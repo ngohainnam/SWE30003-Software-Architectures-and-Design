@@ -6,6 +6,16 @@ namespace Group01RestaurantSystem
     {
         public static void Main()
         {
+            //create a list of string
+            List<string> commandList = new List<string>();
+            commandList.Add("Create Reservation");
+            commandList.Add("View Reservation");
+            commandList.Add("Update Reservation");
+
+            Command OrderCLI = new orderCLI(commandList);
+            OrderCLI.PrintCommand();
+
+
             //Initialize FOHstaff
             //Initialize Chef
             //Initialize Database
