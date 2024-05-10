@@ -8,13 +8,18 @@ namespace Group01RestaurantSystem
 {
     internal class orderCLI : Command
     {
+        private Menu fMenu;
         public orderCLI(List<string> commandList) : base(commandList)
         {
+            fMenu = new Menu();
         }
 
         public override void Execute()
         {
-            //print menu
+            if (UserChoice == 1 )
+            {
+                fMenu.PrintMenu();
+            }
         }
     }
 }
