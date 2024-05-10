@@ -27,26 +27,50 @@ namespace UserNamespace
 
         public string Name
         {
-            get { return _fName; }
-            protected set { _fName = value; }
+            get 
+            { 
+                return _fName; 
+            }
+            set
+            { 
+                _fName = value; 
+            }
         }
 
         public string Password
         {
-            get { return _fPassword; }
-            set { _fPassword = value; }
+            get 
+            { 
+                return _fPassword; 
+            }
+            set 
+            { 
+                _fPassword = value; 
+            }
         }
 
         public string Email
         {
-            get { return _fEmail; }
-            set { _fEmail = value; }
+            get 
+            { 
+                return _fEmail; 
+            }
+            set 
+            { 
+                _fEmail = value; 
+            }
         }
 
         public string DateOfBirth
         {
-            get { return _fDateOfBirth; }
-            set { _fDateOfBirth = value; }
+            get 
+            { 
+                return _fDateOfBirth; 
+            }
+            set 
+            { 
+                _fDateOfBirth = value; 
+            }
         }
     }
 }
