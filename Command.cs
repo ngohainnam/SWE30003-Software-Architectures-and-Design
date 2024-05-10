@@ -9,10 +9,10 @@ namespace Group01RestaurantSystem
     public abstract class Command
     {
         private int userChoice;
-        private List<string> commandList;
-        public List<string> CommandList { get => commandList; set => commandList = value; }
+        private List<string> CommandList;
         public Command(List<string> commandList)
         {
+            CommandList = new List<string>();
             CommandList = commandList;
         }
 
