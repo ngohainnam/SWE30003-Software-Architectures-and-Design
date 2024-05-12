@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserNamespace
+namespace Group01RestaurantSystem
 {
     public abstract class User
     {

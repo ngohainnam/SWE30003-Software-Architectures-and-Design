@@ -26,3 +26,17 @@ C:\Users\User\Desktop\y3\sem1\Software Architectures and Design\assignment3\obj\
 C:\Users\User\Desktop\y3\sem1\Software Architectures and Design\assignment3\obj\Debug\net6.0\Group01RestaurantSystem.pdb
 C:\Users\User\Desktop\y3\sem1\Software Architectures and Design\assignment3\obj\Debug\net6.0\Group01RestaurantSystem.genruntimeconfig.cache
 C:\Users\User\Desktop\y3\sem1\Software Architectures and Design\assignment3\obj\Debug\net6.0\ref\Group01RestaurantSystem.dll
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\bin\Debug\net6.0\Group01RestaurantSystem.exe
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\bin\Debug\net6.0\Group01RestaurantSystem.deps.json
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\bin\Debug\net6.0\Group01RestaurantSystem.runtimeconfig.json
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\bin\Debug\net6.0\Group01RestaurantSystem.dll
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\bin\Debug\net6.0\Group01RestaurantSystem.pdb
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.AssemblyInfoInputs.cache
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.AssemblyInfo.cs
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.csproj.CoreCompileInputs.cache
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.dll
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\refint\Group01RestaurantSystem.dll
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.pdb
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\Group01RestaurantSystem.genruntimeconfig.cache
+C:\Users\ngoha\OneDrive\Desktop\SWE30003-Software Architectures and Design\asm3\obj\Debug\net6.0\ref\Group01RestaurantSystem.dll
