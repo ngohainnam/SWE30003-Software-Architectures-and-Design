@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Group01RestaurantSystem
+namespace Group01RestaurantSystem.CommandCLI
 {
     public abstract class Command
     {

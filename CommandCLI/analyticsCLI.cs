@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Group01RestaurantSystem
+namespace Group01RestaurantSystem.CommandCLI
 {
-    internal class Chef
+    internal class analyticsCLI
     {
     }
 }
