@@ -10,34 +10,136 @@ namespace Group01RestaurantSystem.CommandCLI
     {
         private int userChoice;
         private List<string> CommandList;
+
+        // Make the dictionary readonly since it is not modified at runtime
+        private static readonly Dictionary<string, string> userPasswords = new Dictionary<string, string>
+        {
+            {"Manager", "managergo"}, {"FOHStaff", "staffgo"}, {"Chef", "chefgo"}
+        };
+
         public Command(List<string> commandList)
         {
-            CommandList = new List<string>();
-            CommandList = commandList;
+            // Direct assignment from the parameter
+            CommandList = commandList ?? new List<string>(); // Safeguard against null input
         }
+
         public int UserChoice
         {
-            get { return userChoice; }
-            set { userChoice = value; }
+            get
+            {
+                return userChoice;
+            }
+            set
+            {
+                userChoice = value;
+            }
         }
 
         public abstract void Execute();
+
         public void PrintCommand()
         {
-            for (int i = 0; i < CommandList.Count; i++)
+            bool isAuthenticated = false;
+            while (!isAuthenticated)
             {
-                Console.WriteLine($"{i + 1}. {CommandList[i]}");
+                Console.WriteLine("Welcome to The Relaxing Koala System");
+                Console.WriteLine("Please select your role: (Guest, Manager, FOHStaff, Chef) or type 'Exit' to quit:");
+                string? role = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(role))
+                {
+                    Console.WriteLine("No input provided. Please try again.\n");
+                    continue; 
+                }
+
+                role = role.Trim(); 
+
+                if (role.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Exiting program...");
+                    return; 
+                }
+
+                if (role.Equals("Guest", StringComparison.OrdinalIgnoreCase))
+                {
+                    ClearScreen();
+                    GuestInterface();
+                    isAuthenticated = true; 
+                }
+                else if (userPasswords.TryGetValue(role, out string? storedPassword))
+                {
+                    Console.WriteLine("Enter your password:");
+                    string? password = Console.ReadLine();
+
+                    if (password == storedPassword)
+                    {
+                        ClearScreen();
+                        switch (role)
+                        {
+                            case "Manager":
+                                ManagerInterface();
+                                break;
+                            case "FOHStaff":
+                                FOHStaffInterface();
+                                break;
+                            case "Chef":
+                                ChefInterface();
+                                break;
+                        }
+                        isAuthenticated = true; 
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect password, please try again.\n");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid role selected, please try again.\n");
+                }
             }
-            Console.WriteLine("Please enter your choice: ");
-            //check for inval input
-            userChoice = Convert.ToInt32(Console.ReadLine());
-            while (userChoice < 1 || userChoice > CommandList.Count)
-            {
-                Console.WriteLine("Invalid input, please enter a number between 1 and " + CommandList.Count);
-                userChoice = Convert.ToInt32(Console.ReadLine());
-            }
-            Console.WriteLine("finished");
         }
 
+        private static void ClearScreen()
+        {
+            Console.Clear();
+        }
+
+        private static void GuestInterface()
+        {
+            Console.WriteLine("Welcome, Guest! Here are our current menu offerings:");
+            // Instantiate the orderCLI with a command list, possibly containing menu operations
+            var guestCommands = new List<string> { "View Menu" }; // Example command list
+            var orderCli = new orderCLI(guestCommands);
+
+            // Simulate a menu selection
+            Console.WriteLine("Press 1 to view the menu:");
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int userChoice) && userChoice == 1)
+            {
+                orderCli.UserChoice = userChoice;
+                orderCli.Execute();
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Exiting menu.");
+            }
+        }
+
+
+        private static void ManagerInterface()
+        {
+            Console.WriteLine("Welcome, Manager!");
+        }
+
+        private static void FOHStaffInterface()
+        {
+            Console.WriteLine("Welcome FOH Staff!");
+        }
+
+        private static void ChefInterface()
+        {
+            Console.WriteLine("Welcome Chef!");
+        }
     }
 }
