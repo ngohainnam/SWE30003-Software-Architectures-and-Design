@@ -108,24 +108,20 @@ namespace Group01RestaurantSystem.CommandCLI
         private static void GuestInterface()
         {
             Console.WriteLine("Welcome, Guest! Here are our current menu offerings:");
-            // Instantiate the orderCLI with a command list, possibly containing menu operations
-            var guestCommands = new List<string> { "View Menu" }; // Example command list
-            var orderCli = new orderCLI(guestCommands);
+            Console.WriteLine("Press 1 to view the menu, or press any other key to exit.");
 
-            // Simulate a menu selection
-            Console.WriteLine("Press 1 to view the menu:");
-            string? input = Console.ReadLine();
-            if (int.TryParse(input, out int userChoice) && userChoice == 1)
+            Command orderCli = new orderCLI(new List<string>()); 
+
+            if (Console.ReadLine() == "1")
             {
-                orderCli.UserChoice = userChoice;
+                orderCli.UserChoice = 1; 
                 orderCli.Execute();
             }
             else
             {
-                Console.WriteLine("Invalid choice. Exiting menu.");
+                Console.WriteLine("Exiting menu.");
             }
         }
-
 
         private static void ManagerInterface()
         {
