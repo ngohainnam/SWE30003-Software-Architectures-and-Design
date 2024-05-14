@@ -48,7 +48,9 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 if (string.IsNullOrEmpty(role))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No input provided. Please try again.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
                     continue; 
                 }
 
@@ -56,7 +58,9 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 if (role.Equals("Exit"))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Exiting program...");
+                    Console.ForegroundColor = ConsoleColor.White;
                     return; 
                 }
 
@@ -90,12 +94,16 @@ namespace Group01RestaurantSystem.CommandCLI
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Incorrect password, please try again.\n");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid role selected, please try again.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }
@@ -107,7 +115,6 @@ namespace Group01RestaurantSystem.CommandCLI
 
         private static void GuestInterface()
         {
-            Console.WriteLine("Welcome, Guest! Here are your option:");
             Command orderCli = new orderCLI(new List<string>()); 
 
             orderCli.Execute();

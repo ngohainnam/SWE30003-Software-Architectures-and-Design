@@ -8,13 +8,15 @@ namespace Group01RestaurantSystem
 {
     public class MenuItem
     {
+        private int index;
         private double fPrice;
         private string fName;
         private string fDescription;
         private string fCategory;
 
-        public MenuItem(string name, double price, string description, string category)
+        public MenuItem(int foodindex, string name, double price, string description, string category)
         {
+            index = foodindex;
             fName = name;
             fPrice = price;
             fDescription = description;
@@ -22,6 +24,11 @@ namespace Group01RestaurantSystem
         }
 
         //getters
+        public int GetIndex()
+        {
+            return index;
+        }
+
         public string GetName()
         {
             return fName;
