@@ -54,13 +54,13 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 role = role.Trim(); 
 
-                if (role.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                if (role.Equals("Exit"))
                 {
                     Console.WriteLine("Exiting program...");
                     return; 
                 }
 
-                if (role.Equals("Guest", StringComparison.OrdinalIgnoreCase))
+                if (role.Equals("Guest"))
                 {
                     ClearScreen();
                     GuestInterface();
@@ -107,20 +107,10 @@ namespace Group01RestaurantSystem.CommandCLI
 
         private static void GuestInterface()
         {
-            Console.WriteLine("Welcome, Guest! Here are our current menu offerings:");
-            Console.WriteLine("Press 1 to view the menu, or press any other key to exit.");
-
+            Console.WriteLine("Welcome, Guest! Here are your option:");
             Command orderCli = new orderCLI(new List<string>()); 
 
-            if (Console.ReadLine() == "1")
-            {
-                orderCli.UserChoice = 1; 
-                orderCli.Execute();
-            }
-            else
-            {
-                Console.WriteLine("Exiting menu.");
-            }
+            orderCli.Execute();
         }
 
         private static void ManagerInterface()

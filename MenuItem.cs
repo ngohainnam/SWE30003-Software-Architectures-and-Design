@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Group01RestaurantSystem
 {
-    internal class MenuItem
+    public class MenuItem
     {
         private double fPrice;
         private string fName;
