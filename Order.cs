@@ -37,18 +37,34 @@ namespace Group01RestaurantSystem
         // Method to print the current order and total
         public void PrintOrder()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Current Order:");
+            int i = 1;
             foreach (var item in orderItems)
             {
-                Console.WriteLine($"{item.GetName()} - {item.GetPrice():C}");
+                Console.WriteLine($"{i} - {item.GetName()} - {item.GetPrice():C}");
+                i++;
             }
             Console.WriteLine($"Total: {total:C}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         // Method to get the total price of the order
         public double GetTotal()
         {
             return total;
+        }
+
+        public MenuItem GetOrderItem(int index)
+        {
+            if (index >= 0 && index < orderItems.Count)
+            {
+                return orderItems[index];
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("Index out of range.");
+            }
         }
     }
 }
