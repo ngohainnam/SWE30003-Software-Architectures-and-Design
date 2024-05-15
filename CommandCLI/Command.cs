@@ -9,7 +9,8 @@ namespace Group01RestaurantSystem.CommandCLI
     public abstract class Command
     {
         private int userChoice;
-        private List<string> CommandList;
+        private readonly List<string> CommandList;
+        private readonly Database database = new Database();
 
         // Make the dictionary readonly since it is not modified at runtime
         private static readonly Dictionary<string, string> userPasswords = new Dictionary<string, string>
@@ -39,9 +40,9 @@ namespace Group01RestaurantSystem.CommandCLI
 
         public void PrintCommand()
         {
-            bool isAuthenticated = false;
-            while (!isAuthenticated)
+            while (true)
             {
+                Console.Clear();
                 Console.WriteLine("Welcome to The Relaxing Koala System");
                 Console.WriteLine("Please select your role: (Guest, Manager, FOHStaff, Chef) or type 'Exit' to quit:");
                 string? role = Console.ReadLine();
@@ -66,9 +67,8 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 if (role.Equals("Guest"))
                 {
-                    ClearScreen();
-                    GuestInterface();
-                    isAuthenticated = true; 
+                    Console.Clear();
+                    CustomerInterface();
                 }
                 else if (userPasswords.TryGetValue(role, out string? storedPassword))
                 {
@@ -77,7 +77,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
                     if (password == storedPassword)
                     {
-                        ClearScreen();
+                        Console.Clear();
                         switch (role)
                         {
                             case "Manager":
@@ -90,7 +90,6 @@ namespace Group01RestaurantSystem.CommandCLI
                                 ChefInterface();
                                 break;
                         }
-                        isAuthenticated = true; 
                     }
                     else
                     {
@@ -105,24 +104,36 @@ namespace Group01RestaurantSystem.CommandCLI
                     Console.WriteLine("Invalid role selected, please try again.\n");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
+                Console.WriteLine("Press anything to continue");
+                Console.ReadKey();
             }
         }
 
-        private static void ClearScreen()
-        {
-            Console.Clear();
-        }
-
-        private static void GuestInterface()
+        private static void CustomerInterface()
         {
             Command orderCli = new orderCLI(new List<string>()); 
-
             orderCli.Execute();
         }
 
         private static void ManagerInterface()
         {
-            Console.WriteLine("Welcome, Manager!");
+            Console.Clear();
+            while (true)
+            {
+                Console.WriteLine("1. Sale Data");
+                Console.WriteLine("2. Exit");
+                Console.Write("Select an option: ");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Database.Instance.PrintSalesData();
+                        break;
+                    case 2:
+                        return; 
+                }
+            }
         }
 
         private static void FOHStaffInterface()

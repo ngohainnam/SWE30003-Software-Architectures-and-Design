@@ -13,7 +13,7 @@ namespace Group01RestaurantSystem.Roles
 
         // Constructor
         public Customer(string name, string password, string email, string dateOfBirth, string address, string phoneNumber)
-            : base(name, password, email, dateOfBirth)
+            : base(name, password)
         {
             _address = address;
             _phoneNumber = phoneNumber;
@@ -48,8 +48,6 @@ namespace Group01RestaurantSystem.Roles
         {
             Console.WriteLine($"Customer Information:\n" +
                               $"Name: {Name}\n" +
-                              $"Email: {Email}\n" +
-                              $"Date of Birth: {DateOfBirth}\n" +
                               $"Address: {Address}\n" +
                               $"Phone Number: {PhoneNumber}\n");
         }

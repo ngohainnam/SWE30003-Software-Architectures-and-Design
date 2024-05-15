@@ -66,5 +66,11 @@ namespace Group01RestaurantSystem
                 throw new IndexOutOfRangeException("Index out of range.");
             }
         }
+
+        public List<MenuItem> GetOrderItems()
+        {
+            return orderItems;
+        }
+
     }
 }

@@ -10,16 +10,12 @@ namespace Group01RestaurantSystem.Roles
     {
         private string _fName;
         private string _fPassword;
-        private string _fEmail;
-        private string _fDateOfBirth;
 
         // Constructor for derived classes
-        protected User(string name, string password, string email, string dateOfBirth)
+        protected User(string name, string password)
         {
             _fName = name;
             _fPassword = password;
-            _fEmail = email;
-            _fDateOfBirth = dateOfBirth;
         }
 
         // Abstract method to be implemented by derived classes
@@ -46,30 +42,6 @@ namespace Group01RestaurantSystem.Roles
             set 
             { 
                 _fPassword = value; 
-            }
-        }
-
-        public string Email
-        {
-            get 
-            { 
-                return _fEmail; 
-            }
-            set 
-            { 
-                _fEmail = value; 
-            }
-        }
-
-        public string DateOfBirth
-        {
-            get 
-            { 
-                return _fDateOfBirth; 
-            }
-            set 
-            { 
-                _fDateOfBirth = value; 
             }
         }
     }

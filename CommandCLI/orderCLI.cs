@@ -43,6 +43,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
                     case 3:
                         fOrder.PrintOrder();
+                        Database.Instance.AddOrder(fOrder);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Order Completed. Thank you!");
                         Console.ForegroundColor = ConsoleColor.White;
