@@ -10,9 +10,11 @@ namespace Group01RestaurantSystem
     {
         private List<MenuItem> orderItems;
         private double total;
+        private DateTime currentDateTime;
 
         public Order()
         {
+            currentDateTime = new DateTime();
             orderItems = new List<MenuItem>();
             total = 0;
         }
@@ -21,7 +23,7 @@ namespace Group01RestaurantSystem
         public void AddItem(MenuItem item)
         {
             orderItems.Add(item);
-            total += item.GetPrice();  // Update total price whenever an item is added
+            total += item.GetPrice;  // Update total price whenever an item is added
         }
 
         // Method to remove an item from the order
@@ -30,7 +32,7 @@ namespace Group01RestaurantSystem
             if (orderItems.Contains(item))
             {
                 orderItems.Remove(item);
-                total -= item.GetPrice();  // Update total price whenever an item is removed
+                total -= item.GetPrice;  // Update total price whenever an item is removed
             }
         }
 
@@ -42,7 +44,7 @@ namespace Group01RestaurantSystem
             int i = 1;
             foreach (var item in orderItems)
             {
-                Console.WriteLine($"{i} - {item.GetName()} - {item.GetPrice():C}");
+                Console.WriteLine($"{i} - {item.GetName} - {item.GetPrice:C}");
                 i++;
             }
             Console.WriteLine($"Total: {total:C}");
@@ -67,10 +69,15 @@ namespace Group01RestaurantSystem
             }
         }
 
-        public List<MenuItem> GetOrderItems()
+        public List<MenuItem> GetOrderItems
         {
-            return orderItems;
+            get => orderItems;
         }
+        public double GetCurrentTotal
+        {
+            get => total;
+        }
+        public DateTime CurrentDateTime { get => currentDateTime; set => currentDateTime = value; }
 
     }
 }

@@ -24,26 +24,26 @@ namespace Group01RestaurantSystem
         }
 
         //getters
-        public int GetIndex()
+        public int GetIndex
         {
-            return index;
+            get => index;
         }
 
-        public string GetName()
+        public string GetName
         {
-            return fName;
+            get=> fName;
         }
-        public double GetPrice()
+        public double GetPrice
         {
-            return fPrice;
+            get=> fPrice;
         }
-        public string GetDescription()
+        public string GetDescription
         {
-            return fDescription;
+            get => fDescription;
         }
-        public string GetCategory()
+        public string GetCategory
         {
-            return fCategory;
+            get=> fCategory;
         }
     }
 }

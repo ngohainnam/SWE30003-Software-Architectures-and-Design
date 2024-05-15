@@ -72,8 +72,8 @@ namespace Group01RestaurantSystem.CommandCLI
                 var item = fMenu.GetMenuItem(index);
                 fOrder.AddItem(item);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Added {item.GetName()} to your order.");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"Added {item.GetName} to your order.");
+                Console.ForegroundColor = ConsoleColor.White;   
             }
             catch (IndexOutOfRangeException)
             {
@@ -92,7 +92,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 var item = fOrder.GetOrderItem(index);
                 fOrder.RemoveItem(item);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Removed {item.GetName()} from your order.");
+                Console.WriteLine($"Removed {item.GetName} from your order.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             catch (IndexOutOfRangeException)
