@@ -1,0 +1,15 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 10,
+        "GetName": "Unsweet Tea",
+        "GetPrice": 1.99,
+        "GetDescription": "Unsweet tea",
+        "GetCategory": "Beverage"
+      }
+    ],
+    "GetCurrentTotal": 1.99,
+    "CurrentDateTime": "2024-05-16T12:46:15.0253579+10:00"
+  }
+}

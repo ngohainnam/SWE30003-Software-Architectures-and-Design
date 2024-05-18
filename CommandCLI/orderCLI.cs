@@ -9,7 +9,7 @@ namespace Group01RestaurantSystem.CommandCLI
         private Menu fMenu;
         private Order fOrder;
 
-        public orderCLI(List<string> commandList) : base(commandList)
+        public orderCLI()
         {
             fMenu = new Menu();
             fOrder = new Order();

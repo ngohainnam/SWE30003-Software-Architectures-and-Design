@@ -11,7 +11,7 @@ namespace Group01RestaurantSystem.CommandCLI
         private Reservation reservation;
         public reservationCLI()
         {
-            this.reservation = new Reservation();
+            reservation = new Reservation();
         }
 
         public override void Execute()
@@ -40,7 +40,6 @@ namespace Group01RestaurantSystem.CommandCLI
                         continueReservation = false;
                         break;
                 }
-
             }
         }
 
@@ -76,7 +75,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 }
 
                 Console.WriteLine("Who is this reservation under? ");
-                string customerName = Console.ReadLine();
+                string ?customerName = Console.ReadLine();
 
                 if (customerName == "")
                 {
@@ -84,7 +83,8 @@ namespace Group01RestaurantSystem.CommandCLI
                     return;
                 }
 
-                reservation.ReserveTable(tableNumber, customerName);
+                string customerName1 = customerName ?? "";
+                reservation.ReserveTable(tableNumber, customerName1);
                 makingReservation = false;
             }
         }
@@ -92,7 +92,7 @@ namespace Group01RestaurantSystem.CommandCLI
         public void CancelReservation()
         {
             Console.WriteLine("\nWho is the owner of the reservation that you would like to cancel? ");
-            string customerName = Console.ReadLine();
+            string customerName = Console.ReadLine() ?? ""; // Use null-coalescing operator to handle null (just to avoid warning message)
 
             if (customerName == "")
             {

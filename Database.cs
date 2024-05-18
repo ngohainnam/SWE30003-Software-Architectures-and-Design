@@ -72,22 +72,22 @@ namespace Group01RestaurantSystem
         public void SaveOrder()
         {
             DateTime now = DateTime.Now;
-            string formattedDateTime = now.ToString("yyyy-MM-dd_HH-mm-ss");
-            string fileName = $"orders_{formattedDateTime}.json";
-            string jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
+            string? formattedDateTime = now.ToString("yyyy-MM-dd_HH-mm-ss");
+            string? fileName = $"orders_{formattedDateTime}.json";
+            string? jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(fileName, jsonString);
             Console.WriteLine($"Data has been written to {fileName}");
         }
 
         public void ReadSales()
         {
-            string salesFilePath = "sales_Data.json";
+            string? salesFilePath = "sales_Data.json";
 
 
             // Check if the sales data file exists
             if (File.Exists(salesFilePath))
             {
-                string salesJson = File.ReadAllText(salesFilePath);
+                string? salesJson = File.ReadAllText(salesFilePath);
 
                 if (!string.IsNullOrWhiteSpace(salesJson))
                 {
@@ -119,19 +119,14 @@ namespace Group01RestaurantSystem
             {
                 Console.WriteLine("sales_Data.json does not exist. Initialized an empty sales dictionary.");
             }
-
-
         }
+
         public void WriteSales()
         {
-            string salesFilePath = "sales_Data.json";
-            string updatedSalesJson = JsonSerializer.Serialize(menuItemSales, new JsonSerializerOptions { WriteIndented = true });
+            string? salesFilePath = "sales_Data.json";
+            string? updatedSalesJson = JsonSerializer.Serialize(menuItemSales, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(salesFilePath, updatedSalesJson);
             Console.WriteLine("Sales data has been updated and written to sales_Data.json");
         }
-
-
-
-
     }
 }
