@@ -43,6 +43,11 @@ namespace Group01RestaurantSystem.Roles
             }
         }
 
+        public void GetCardInfo()
+        {
+
+        }
+
         // Implementing the abstract method from the base class
         public override void DisplayInfo()
         {
