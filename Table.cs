@@ -4,27 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System;
+
 namespace Group01RestaurantSystem
 {
     public class Table
     {
-        private readonly int tableID;
-        private readonly string tableName;
+        private readonly int tableNo;
+        private bool reserved;
+        private string customerName;
 
-        public Table(int id, string name)
+        public Table(int number)
         {
-            tableID = id;
-            tableName = name;
+            this.tableNo = number;
+            this.reserved = false;
+            this.customerName = "";
         }
 
-        public string GetTable()
+        public int GetTableNo
         {
-            return tableName;
+            get { return tableNo; }
         }
 
-        public int GetID()
+        public bool Reserve
         {
-            return tableID;
+            get { return reserved; }
+            set { reserved = value; }
+        }
+
+        public string CustomerName
+        {
+            get { return customerName; }
+            set { customerName = value; }
         }
     }
 }
