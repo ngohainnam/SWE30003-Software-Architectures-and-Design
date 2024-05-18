@@ -9,7 +9,6 @@ namespace Group01RestaurantSystem.CommandCLI
     public abstract class Command
     {
         private int userChoice;
-        private readonly List<string> CommandList;
         private readonly Database database = new Database();
 
         // Make the dictionary readonly since it is not modified at runtime
@@ -17,11 +16,11 @@ namespace Group01RestaurantSystem.CommandCLI
         {
             {"Manager", "managergo"}, {"FOHStaff", "staffgo"}, {"Chef", "chefgo"}
         };
-
-        public Command(List<string> commandList)
+        // Create one instance of reservationCLI throughout entire project runtime.
+        private static Command reservationCLI = new reservationCLI();
+        public Command()
         {
-            // Direct assignment from the parameter
-            CommandList = commandList ?? new List<string>(); // Safeguard against null input
+
         }
 
         public int UserChoice
@@ -52,17 +51,17 @@ namespace Group01RestaurantSystem.CommandCLI
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No input provided. Please try again.\n");
                     Console.ForegroundColor = ConsoleColor.White;
-                    continue; 
+                    continue;
                 }
 
-                role = role.Trim(); 
+                role = role.Trim();
 
                 if (role.Equals("Exit"))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Exiting program...");
                     Console.ForegroundColor = ConsoleColor.White;
-                    return; 
+                    return;
                 }
 
                 if (role.Equals("Guest"))
@@ -111,7 +110,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
         private static void CustomerInterface()
         {
-            Command orderCli = new orderCLI(new List<string>()); 
+            Command orderCli = new orderCLI();
             orderCli.Execute();
         }
 
@@ -131,14 +130,32 @@ namespace Group01RestaurantSystem.CommandCLI
                         Database.Instance.PrintSalesData();
                         break;
                     case 2:
-                        return; 
+                        return;
                 }
             }
         }
 
         private static void FOHStaffInterface()
         {
-            Console.WriteLine("Welcome FOH Staff!");
+            Console.Clear();
+            // Command reservationCLI = new reservationCLI();
+            while (true)
+            {
+                Console.WriteLine("Welcome to FOH Staff:");
+                Console.WriteLine("1. Reservations");
+                Console.WriteLine("2. Exit");
+                Console.Write("Select an option: ");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        reservationCLI.Execute();
+                        break;
+                    case 2:
+                        return;
+                }
+            }
         }
 
         private static void ChefInterface()
