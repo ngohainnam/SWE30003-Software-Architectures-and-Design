@@ -1,0 +1,28 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 10,
+        "GetName": "Unsweet Tea",
+        "GetPrice": 1.99,
+        "GetDescription": "Unsweet tea",
+        "GetCategory": "Beverage"
+      }
+    ],
+    "GetCurrentTotal": 1.99,
+    "CurrentDateTime": "2024-05-16T12:46:15.0253579+10:00"
+  },
+  "2": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 4,
+        "GetName": "House Salad",
+        "GetPrice": 7.99,
+        "GetDescription": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
+        "GetCategory": "Salad"
+      }
+    ],
+    "GetCurrentTotal": 7.99,
+    "CurrentDateTime": "2024-05-16T12:46:39.8171518+10:00"
+  }
+}

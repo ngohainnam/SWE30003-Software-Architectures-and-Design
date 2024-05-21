@@ -8,36 +8,19 @@ namespace Group01RestaurantSystem.CommandCLI
 {
     public abstract class Command
     {
-        private int userChoice;
-        private readonly Database database = new Database();
-
         // Make the dictionary readonly since it is not modified at runtime
         private static readonly Dictionary<string, string> userPasswords = new Dictionary<string, string>
         {
             {"Manager", "managergo"}, {"FOHStaff", "staffgo"}, {"Chef", "chefgo"}
         };
-        // Create one instance of reservationCLI throughout entire project runtime.
-        private static Command reservationCLI = new reservationCLI();
+
         public Command()
         {
-
-        }
-
-        public int UserChoice
-        {
-            get
-            {
-                return userChoice;
-            }
-            set
-            {
-                userChoice = value;
-            }
         }
 
         public abstract void Execute();
 
-        public void PrintCommand()
+        public static void Start()
         {
             while (true)
             {
@@ -116,51 +99,21 @@ namespace Group01RestaurantSystem.CommandCLI
 
         private static void ManagerInterface()
         {
-            Console.Clear();
-            while (true)
-            {
-                Console.WriteLine("1. Sale Data");
-                Console.WriteLine("2. Exit");
-                Console.Write("Select an option: ");
-
-                int choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        Database.Instance.PrintSalesData();
-                        break;
-                    case 2:
-                        return;
-                }
-            }
+            Command analyticsCLI = new analyticsCLI();
+            analyticsCLI.Execute();
         }
 
         private static void FOHStaffInterface()
         {
-            Console.Clear();
-            // Command reservationCLI = new reservationCLI();
-            while (true)
-            {
-                Console.WriteLine("Welcome to FOH Staff:");
-                Console.WriteLine("1. Reservations");
-                Console.WriteLine("2. Exit");
-                Console.Write("Select an option: ");
-
-                int choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        reservationCLI.Execute();
-                        break;
-                    case 2:
-                        return;
-                }
-            }
+            // Create one instance of reservationCLI throughout entire project runtime.
+            Command reservationCLI = new reservationCLI();
+            reservationCLI.Execute();
         }
 
         private static void ChefInterface()
         {
-            Console.WriteLine("Welcome Chef!");
+            Command kitchenCLI = new kitchenCLI();
+            kitchenCLI.Execute();
         }
     }
 }

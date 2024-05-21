@@ -1,0 +1,15 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 2,
+        "GetName": "Spaghetti",
+        "GetPrice": 10.99,
+        "GetDescription": "Spaghetti with marinara sauce",
+        "GetCategory": "Entree"
+      }
+    ],
+    "GetCurrentTotal": 10.99,
+    "CurrentDateTime": "2024-05-18T18:22:51.3446841+10:00"
+  }
+}

@@ -11,7 +11,7 @@ namespace Group01RestaurantSystem.CommandCLI
         private Reservation reservation;
         public reservationCLI()
         {
-            this.reservation = new Reservation();
+            reservation = new Reservation();
         }
 
         public override void Execute()

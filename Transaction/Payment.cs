@@ -4,9 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Group01RestaurantSystem.Transaction
+public abstract class Payment
 {
-    internal interface Payment
+    private double _totalbill;
+
+    public double TotalBill
     {
+        get
+        {
+            return _totalbill;
+        }
+        set
+        {
+            _totalbill = value;
+        }
     }
+
+    protected Payment(double totalbill)
+    {
+        TotalBill = totalbill;
+    }
+
+    public abstract bool ProcessPayment();
 }
