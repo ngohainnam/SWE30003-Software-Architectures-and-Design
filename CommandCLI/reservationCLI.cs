@@ -25,8 +25,9 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("2: Cancel Reservation");
                 Console.WriteLine("3: Exit");
                 Console.WriteLine("Enter your option: ");
-
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 int choice = Convert.ToInt32(Console.ReadLine());
+                Console.ResetColor();
                 switch (choice)
                 {
                     case 1:
@@ -40,7 +41,6 @@ namespace Group01RestaurantSystem.CommandCLI
                         continueReservation = false;
                         break;
                 }
-
             }
         }
 
@@ -51,56 +51,75 @@ namespace Group01RestaurantSystem.CommandCLI
 
         public void MakeReservation()
         {
-            bool makingReservation = true;
-            while (makingReservation)
+            bool successfulBooking = false;
+            var attempts = 0;
+            string customerName = "";
+            while (!successfulBooking)
             {
-                bool isTableReserved = false;
-                Console.WriteLine("\nWhat table would you like to reserve? ");
-                int tableNumber = Convert.ToInt32(Console.ReadLine());
-                tableNumber--;
-                for (int i = 0; i < reservation.TableList.Length; i++)
+                attempts++;
+                if (attempts > 1)
                 {
-                    if (reservation.TableList[i].GetTableNo == tableNumber && reservation.TableList[i].Reserve == true)
+                    Console.WriteLine("\nTry a different table number, which table would you like to reserve? ");
+                }
+                else
+                {
+                    Console.WriteLine("\nWhat table would you like to reserve? ");
+                }
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                int tableNumber = Convert.ToInt32(Console.ReadLine());
+                Console.ResetColor();
+                if (attempts == 1)
+                {
+                    Console.WriteLine("Who is this reservation under? ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    customerName = Console.ReadLine();
+                    Console.ResetColor();
+
+                    if (customerName == "")
                     {
-                        isTableReserved = true;
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nThis table is already reserved, choose another table.");
+                        Console.WriteLine("\n~~~~~This cannot be empty.~~~~~");
                         Console.ResetColor();
+                        return;
                     }
                 }
-                tableNumber++;
-                // If selected table was reserved then return to beginning of Make Reservation to try again.
-                if (isTableReserved == true)
+
+                Console.WriteLine("Here are the booking time slots");
+                reservation.DisplayTimeSlots(tableNumber);
+
+                DayOfWeek day = reservation.GetUserDayOfWeekInput();
+
+                Console.WriteLine("\nWhat time slot? (Write the hour only)");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                int time = Convert.ToInt32(Console.ReadLine());
+                Console.ResetColor();
+
+                successfulBooking = reservation.BookTimeSlot(tableNumber, day, time, customerName);
+                if (successfulBooking)
                 {
-                    continue;
+                    reservation.DisplayUserSlots(tableNumber);
                 }
 
-                Console.WriteLine("Who is this reservation under? ");
-                string customerName = Console.ReadLine();
-
-                if (customerName == "")
-                {
-                    Console.WriteLine("This cannot be empty.");
-                    return;
-                }
-
-                reservation.ReserveTable(tableNumber, customerName);
-                makingReservation = false;
             }
         }
 
         public void CancelReservation()
         {
             Console.WriteLine("\nWho is the owner of the reservation that you would like to cancel? ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             string customerName = Console.ReadLine();
+            Console.ResetColor();
 
             if (customerName == "")
             {
-                Console.WriteLine("This cannot be empty.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n~~~~~This cannot be empty.~~~~~");
+                Console.ResetColor();
                 return;
             }
 
-            reservation.CancelReservation(customerName);
+            // reservation.CancelReservation(customerName);
+            reservation.CancelTimeSlot(customerName);
         }
     }
 }
