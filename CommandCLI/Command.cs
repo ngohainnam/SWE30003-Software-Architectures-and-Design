@@ -37,7 +37,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     continue;
                 }
 
-                role = role.Trim().ToLower();
+                role = role.Trim();
 
                 if (role.Equals("exit") || role.Equals("e"))
                 {

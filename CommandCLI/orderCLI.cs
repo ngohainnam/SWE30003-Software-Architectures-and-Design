@@ -31,7 +31,21 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("4: Exit");
                 Console.WriteLine("Enter your option: ");
 
-                int choice = Convert.ToInt32(Console.ReadLine());
+                int choice;
+                while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
+                {
+                    Console.Clear();
+                    fMenu.PrintMenu();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nInvalid option. Please try again.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("\nPlease select an option:");
+                    Console.WriteLine("1: Add Item to Order");
+                    Console.WriteLine("2: Remove Item from Order");
+                    Console.WriteLine("3: Complete Order");
+                    Console.WriteLine("4: Exit");
+                    Console.WriteLine("Enter your option: ");
+                }
                 switch (choice)
                 {
                     case 1:
@@ -109,12 +123,13 @@ namespace Group01RestaurantSystem.CommandCLI
         {
             Console.WriteLine("Enter the index of the item to add:");
             int index = Convert.ToInt32(Console.ReadLine()) - 1;
+
             try
             {
                 var item = fMenu.GetMenuItem(index);
                 fOrder.AddItem(item);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Added {item.GetName} to your order.");
+                Console.WriteLine($"Added {item.Name} to your order.");
                 Console.ForegroundColor = ConsoleColor.White;   
             }
             catch (IndexOutOfRangeException)
@@ -134,7 +149,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 var item = fOrder.GetOrderItem(index);
                 fOrder.RemoveItem(item);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Removed {item.GetName} from your order.");
+                Console.WriteLine($"Removed {item.Name} from your order.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             catch (IndexOutOfRangeException)

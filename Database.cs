@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 namespace Group01RestaurantSystem
@@ -11,20 +12,25 @@ namespace Group01RestaurantSystem
         Preparing,
         Finish
     }
+
     internal class Database
     {
-        private Dictionary<int, Order> orders;
-        private Dictionary<Order,OrderStatus> orderQueue;
+        private List<Order> orders;
+        private List<OrderQueueEntry> orderQueue;
         private Dictionary<string, int> menuItemSales;
         private static Database? instance;
         private static readonly object lockObject = new object();
 
         public Database()
         {
-            orders = new Dictionary<int, Order>();
-            orderQueue = new Dictionary<Order, OrderStatus>();
+            orders = new List<Order>();
+            orderQueue = new List<OrderQueueEntry>();
             menuItemSales = new Dictionary<string, int>();
             ReadSales();
+            ReadOrderQueue();
+            DateTime now = DateTime.Now;
+            string formattedDate = now.ToString("dd_MM_yy");
+            ReadOrders(formattedDate);
         }
 
         // Singleton pattern 
@@ -42,7 +48,8 @@ namespace Group01RestaurantSystem
                 }
             }
         }
-        public Dictionary<Order, OrderStatus> GetOrderQueue()
+
+        public List<OrderQueueEntry> GetOrderQueue()
         {
             return orderQueue;
         }
@@ -50,45 +57,108 @@ namespace Group01RestaurantSystem
         // Method to add an order to the database
         public void AddOrder(Order order)
         {
-            int newOrderId = orders.Count + 1;  // Simple order ID generation
             order.CurrentDateTime = DateTime.Now;
-            orders.Add(newOrderId, order);
-            orderQueue.Add(order, OrderStatus.Start);
+            orders.Add(order);
+            orderQueue.Add(new OrderQueueEntry(order, OrderStatus.Start));
+            WriteOrderQueue();
             // Update sales data for each item in the order
-            foreach (MenuItem item in order.GetOrderItems)
+            foreach (MenuItem item in order.OrderItems)
             {
-                if (menuItemSales.ContainsKey(item.GetName))
+                if (menuItemSales.ContainsKey(item.Name))
                 {
-                    menuItemSales[item.GetName] += 1;  // Increment count for the item
+                    menuItemSales[item.Name] += 1;  // Increment count for the item
                 }
                 else
                 {
-                    menuItemSales.Add(item.GetName, 1);  // Add new item with count 1
+                    menuItemSales.Add(item.Name, 1);  // Add new item with count 1
                 }
             }
             SaveOrder();
             WriteSales();
         }
+
         public void UpdateOrderStatus(Order order)
         {
-            if (orderQueue.ContainsKey(order))
+            var entry = orderQueue.FirstOrDefault(e => e.Order == order);
+            if (entry != null)
             {
-                var currentStatus = orderQueue[order];
-                switch (currentStatus)
+                switch (entry.Status)
                 {
                     case OrderStatus.Start:
-                        orderQueue[order] = OrderStatus.Preparing;
+                        entry.Status = OrderStatus.Preparing;
                         break;
                     case OrderStatus.Preparing:
-                        orderQueue[order] = OrderStatus.Finish;
+                        entry.Status = OrderStatus.Finish;
                         break;
                     case OrderStatus.Finish:
-                        // Do nothing if the status is already Finish
+                        orderQueue.Remove(entry);
                         break;
+                }
+                WriteOrderQueue(); // Ensure the order queue is written after updating
+            }
+        }
+
+        public void ReadOrderQueue()
+        {
+            string fileName = $"OrderQueue/OrderQueue.json";
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                var deserializedData = JsonSerializer.Deserialize<List<OrderQueueEntry>>(jsonString);
+                if (deserializedData != null)
+                {
+                    orderQueue = deserializedData;
                 }
             }
         }
 
+        public void WriteOrderQueue()
+        {
+            if (!Directory.Exists("OrderQueue"))
+            {
+                Directory.CreateDirectory("OrderQueue");
+            }
+            string fileName = $"OrderQueue/OrderQueue.json";
+            string jsonString = JsonSerializer.Serialize(orderQueue, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(fileName, jsonString);
+            Console.WriteLine($"Data has been written to {fileName}");
+        }
+
+        public void SaveOrder()
+        {
+            if (!Directory.Exists("Orders"))
+            {
+                Directory.CreateDirectory("Orders");
+            }
+            DateTime now = DateTime.Now;
+            string formattedDate = now.ToString("dd_MM_yy");
+            string fileName = $"Orders/orders_{formattedDate}.json";
+            string jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(fileName, jsonString);
+            Console.WriteLine($"Data has been written to {fileName}");
+        }
+
+        public void ReadOrders(string date)
+        {
+            string fileName = $"Orders/orders_{date}.json";
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                var deserializedOrders = JsonSerializer.Deserialize<List<Order>>(jsonString);
+                if (deserializedOrders != null)
+                {
+                    orders = deserializedOrders;
+                }
+                else
+                {
+                    Console.WriteLine($"No orders found for {date}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Order file for {date} does not exist.");
+            }
+        }
 
         // Method to print sales data for each menu item
         public void PrintSalesData()
@@ -101,29 +171,14 @@ namespace Group01RestaurantSystem
             Console.WriteLine('\n');
         }
 
-        public void SaveOrder()
-        {
-            if (!Directory.Exists("Orders"))
-            {
-                Directory.CreateDirectory("Orders");
-            }
-            DateTime now = DateTime.Now;
-            string? formattedDateTime = now.ToString("yyyy-MM-dd_HH-mm-ss");
-            string? fileName = $"Orders/orders_{formattedDateTime}.json";
-            string? jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(fileName, jsonString);
-            Console.WriteLine($"Data has been written to {fileName}");
-        }
-
         public void ReadSales()
         {
-            string? salesFilePath = "sales_Data.json";
-
+            string salesFilePath = "sales_Data.json";
 
             // Check if the sales data file exists
             if (File.Exists(salesFilePath))
             {
-                string? salesJson = File.ReadAllText(salesFilePath);
+                string salesJson = File.ReadAllText(salesFilePath);
 
                 if (!string.IsNullOrWhiteSpace(salesJson))
                 {
@@ -158,8 +213,8 @@ namespace Group01RestaurantSystem
 
         public void WriteSales()
         {
-            string? salesFilePath = "sales_Data.json";
-            string? updatedSalesJson = JsonSerializer.Serialize(menuItemSales, new JsonSerializerOptions { WriteIndented = true });
+            string salesFilePath = "sales_Data.json";
+            string updatedSalesJson = JsonSerializer.Serialize(menuItemSales, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(salesFilePath, updatedSalesJson);
             Console.WriteLine("Sales data has been updated and written to sales_Data.json");
         }

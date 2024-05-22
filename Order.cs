@@ -1,38 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Group01RestaurantSystem
 {
     internal class Order
     {
-        private List<MenuItem> orderItems;
-        private double total;
-        private DateTime currentDateTime;
+        public List<MenuItem> OrderItems { get; set; }
+        public double Total { get; set; }
+        public DateTime CurrentDateTime { get; set; }
 
         public Order()
         {
-            currentDateTime = new DateTime();
-            orderItems = new List<MenuItem>();
-            total = 0;
+            CurrentDateTime = DateTime.Now;
+            OrderItems = new List<MenuItem>();
+            Total = 0;
         }
 
         // Method to add an item to the order
         public void AddItem(MenuItem item)
         {
-            orderItems.Add(item);
-            total += item.GetPrice;  // Update total price whenever an item is added
+            OrderItems.Add(item);
+            Total += item.Price;  // Update total price whenever an item is added
         }
 
         // Method to remove an item from the order
         public void RemoveItem(MenuItem item)
         {
-            if (orderItems.Contains(item))
+            if (OrderItems.Contains(item))
             {
-                orderItems.Remove(item);
-                total -= item.GetPrice;  // Update total price whenever an item is removed
+                OrderItems.Remove(item);
+                Total -= item.Price;  // Update total price whenever an item is removed
             }
         }
 
@@ -42,42 +39,31 @@ namespace Group01RestaurantSystem
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Current Order:");
             int i = 1;
-            foreach (var item in orderItems)
+            foreach (var item in OrderItems)
             {
-                Console.WriteLine($"{i} - {item.GetName} - {item.GetPrice:C}");
+                Console.WriteLine($"{i} - {item.Name} - {item.Price:C}");
                 i++;
             }
-            Console.WriteLine($"Total: {total:C}");
+            Console.WriteLine($"Total: {Total:C}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         // Method to get the total price of the order
         public double GetTotal()
         {
-            return total;
+            return Total;
         }
 
         public MenuItem GetOrderItem(int index)
         {
-            if (index >= 0 && index < orderItems.Count)
+            if (index >= 0 && index < OrderItems.Count)
             {
-                return orderItems[index];
+                return OrderItems[index];
             }
             else
             {
                 throw new IndexOutOfRangeException("Index out of range.");
             }
         }
-
-        public List<MenuItem> GetOrderItems
-        {
-            get => orderItems;
-        }
-        public double GetCurrentTotal
-        {
-            get => total;
-        }
-        public DateTime CurrentDateTime { get => currentDateTime; set => currentDateTime = value; }
-
     }
 }

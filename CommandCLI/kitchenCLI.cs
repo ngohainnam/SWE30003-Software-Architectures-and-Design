@@ -52,8 +52,8 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 foreach (var entry in orderQueue)
                 {
-                    var order = entry.Key;
-                    var status = entry.Value;
+                    var order = entry.Order;
+                    var status = entry.Status;
 
                     // Set color based on status
                     switch (status)
@@ -79,9 +79,9 @@ namespace Group01RestaurantSystem.CommandCLI
                     Console.WriteLine(new string('-', boxWidth));
 
                     int counter2 = 1;
-                    foreach (var item in order.GetOrderItems)
+                    foreach (var item in order.OrderItems)
                     {
-                        PrintLine($"{counter2++}. {item.GetName}", boxWidth);
+                        PrintLine($"{counter2++}. {item.Name}", boxWidth);
                     }
 
                     Console.WriteLine(horizontalLine);
@@ -103,11 +103,11 @@ namespace Group01RestaurantSystem.CommandCLI
                         int OrderNo = Convert.ToInt32(Console.ReadLine());
                         counter1 = 1;
                         // Loop through the order queue to find the order
-                        foreach (var entry1 in orderQueue)
+                        foreach (var entry in orderQueue)
                         {
                             if (counter1++ == OrderNo)
                             {
-                                database.UpdateOrderStatus(entry1.Key);
+                                database.UpdateOrderStatus(entry.Order);
                                 ViewFoodQueue();
                                 break;
                             }

@@ -1,49 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Group01RestaurantSystem
+﻿namespace Group01RestaurantSystem
 {
     public class MenuItem
     {
-        private int index;
-        private double fPrice;
-        private string fName;
-        private string fDescription;
-        private string fCategory;
+        public int Index { get; set; }
+        public double Price { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
 
-        public MenuItem(int foodindex, string name, double price, string description, string category)
-        {
-            index = foodindex;
-            fName = name;
-            fPrice = price;
-            fDescription = description;
-            fCategory = category;
-        }
+        public MenuItem() { }
 
-        //getters
-        public int GetIndex
+        public MenuItem(int index, string name, double price, string description, string category)
         {
-            get => index;
-        }
-
-        public string GetName
-        {
-            get=> fName;
-        }
-        public double GetPrice
-        {
-            get=> fPrice;
-        }
-        public string GetDescription
-        {
-            get => fDescription;
-        }
-        public string GetCategory
-        {
-            get=> fCategory;
+            Index = index;
+            Name = name;
+            Price = price;
+            Description = description;
+            Category = category;
         }
     }
 }
