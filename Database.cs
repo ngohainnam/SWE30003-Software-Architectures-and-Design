@@ -103,9 +103,13 @@ namespace Group01RestaurantSystem
 
         public void SaveOrder()
         {
+            if (!Directory.Exists("Orders"))
+            {
+                Directory.CreateDirectory("Orders");
+            }
             DateTime now = DateTime.Now;
             string? formattedDateTime = now.ToString("yyyy-MM-dd_HH-mm-ss");
-            string? fileName = $"orders_{formattedDateTime}.json";
+            string? fileName = $"Orders/orders_{formattedDateTime}.json";
             string? jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(fileName, jsonString);
             Console.WriteLine($"Data has been written to {fileName}");
