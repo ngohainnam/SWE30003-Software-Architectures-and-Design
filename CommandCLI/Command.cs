@@ -37,9 +37,9 @@ namespace Group01RestaurantSystem.CommandCLI
                     continue;
                 }
 
-                role = role.Trim();
+                role = role.Trim().ToLower();
 
-                if (role.Equals("Exit"))
+                if (role.Equals("exit") || role.Equals("e"))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Exiting program...");
@@ -47,7 +47,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     return;
                 }
 
-                if (role.Equals("Guest"))
+                if (role.Equals("guest") || role.Equals("g"))
                 {
                     Console.Clear();
                     CustomerInterface();
@@ -79,6 +79,13 @@ namespace Group01RestaurantSystem.CommandCLI
                         Console.WriteLine("Incorrect password, please try again.\n");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
+                }
+                else if (role.Equals("manager") || role.Equals("m") || role.Equals("fohstaff") || role.Equals("f") || role.Equals("chef") || role.Equals("c"))
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("That role has not been implemented yet");
+                    Console.BackgroundColor = ConsoleColor.Black;
+
                 }
                 else
                 {
