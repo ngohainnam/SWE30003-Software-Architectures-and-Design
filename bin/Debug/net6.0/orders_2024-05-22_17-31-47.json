@@ -1,0 +1,22 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 3,
+        "GetName": "Caesar Salad",
+        "GetPrice": 8.99,
+        "GetDescription": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
+        "GetCategory": "Salad"
+      },
+      {
+        "GetIndex": 4,
+        "GetName": "House Salad",
+        "GetPrice": 7.99,
+        "GetDescription": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
+        "GetCategory": "Salad"
+      }
+    ],
+    "GetCurrentTotal": 16.98,
+    "CurrentDateTime": "2024-05-22T17:31:47.1878221+10:00"
+  }
+}

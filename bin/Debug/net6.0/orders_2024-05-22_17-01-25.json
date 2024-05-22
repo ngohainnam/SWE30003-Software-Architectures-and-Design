@@ -1,0 +1,42 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 2,
+        "GetName": "Spaghetti",
+        "GetPrice": 10.99,
+        "GetDescription": "Spaghetti with marinara sauce",
+        "GetCategory": "Entree"
+      },
+      {
+        "GetIndex": 4,
+        "GetName": "House Salad",
+        "GetPrice": 7.99,
+        "GetDescription": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
+        "GetCategory": "Salad"
+      }
+    ],
+    "GetCurrentTotal": 18.98,
+    "CurrentDateTime": "2024-05-22T17:01:16.1089337+10:00"
+  },
+  "2": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 5,
+        "GetName": "Cheesecake",
+        "GetPrice": 5.99,
+        "GetDescription": "New York style cheesecake",
+        "GetCategory": "Dessert"
+      },
+      {
+        "GetIndex": 5,
+        "GetName": "Cheesecake",
+        "GetPrice": 5.99,
+        "GetDescription": "New York style cheesecake",
+        "GetCategory": "Dessert"
+      }
+    ],
+    "GetCurrentTotal": 11.98,
+    "CurrentDateTime": "2024-05-22T17:01:25.8020326+10:00"
+  }
+}

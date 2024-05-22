@@ -1,0 +1,42 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 1,
+        "GetName": "Chicken Alfredo",
+        "GetPrice": 12.99,
+        "GetDescription": "Fettuccine Alfredo with grilled chicken",
+        "GetCategory": "Entree"
+      },
+      {
+        "GetIndex": 2,
+        "GetName": "Spaghetti",
+        "GetPrice": 10.99,
+        "GetDescription": "Spaghetti with marinara sauce",
+        "GetCategory": "Entree"
+      }
+    ],
+    "GetCurrentTotal": 23.98,
+    "CurrentDateTime": "2024-05-22T16:50:18.6956413+10:00"
+  },
+  "2": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 3,
+        "GetName": "Caesar Salad",
+        "GetPrice": 8.99,
+        "GetDescription": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
+        "GetCategory": "Salad"
+      },
+      {
+        "GetIndex": 6,
+        "GetName": "Chocolate Cake",
+        "GetPrice": 5.99,
+        "GetDescription": "Chocolate cake with chocolate frosting",
+        "GetCategory": "Dessert"
+      }
+    ],
+    "GetCurrentTotal": 14.98,
+    "CurrentDateTime": "2024-05-22T16:50:44.820075+10:00"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 1,
+        "GetName": "Chicken Alfredo",
+        "GetPrice": 12.99,
+        "GetDescription": "Fettuccine Alfredo with grilled chicken",
+        "GetCategory": "Entree"
+      },
+      {
+        "GetIndex": 2,
+        "GetName": "Spaghetti",
+        "GetPrice": 10.99,
+        "GetDescription": "Spaghetti with marinara sauce",
+        "GetCategory": "Entree"
+      }
+    ],
+    "GetCurrentTotal": 23.98,
+    "CurrentDateTime": "2024-05-22T16:36:06.9225546+10:00"
+  }
+}

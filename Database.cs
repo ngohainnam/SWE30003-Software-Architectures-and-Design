@@ -5,9 +5,16 @@ using System.Text.Json;
 
 namespace Group01RestaurantSystem
 {
+    enum OrderStatus
+    {
+        Start,
+        Preparing,
+        Finish
+    }
     internal class Database
     {
         private Dictionary<int, Order> orders;
+        private Dictionary<Order,OrderStatus> orderQueue;
         private Dictionary<string, int> menuItemSales;
         private static Database? instance;
         private static readonly object lockObject = new object();
@@ -15,6 +22,7 @@ namespace Group01RestaurantSystem
         public Database()
         {
             orders = new Dictionary<int, Order>();
+            orderQueue = new Dictionary<Order, OrderStatus>();
             menuItemSales = new Dictionary<string, int>();
             ReadSales();
         }
@@ -34,6 +42,10 @@ namespace Group01RestaurantSystem
                 }
             }
         }
+        public Dictionary<Order, OrderStatus> GetOrderQueue()
+        {
+            return orderQueue;
+        }
 
         // Method to add an order to the database
         public void AddOrder(Order order)
@@ -41,7 +53,7 @@ namespace Group01RestaurantSystem
             int newOrderId = orders.Count + 1;  // Simple order ID generation
             order.CurrentDateTime = DateTime.Now;
             orders.Add(newOrderId, order);
-
+            orderQueue.Add(order, OrderStatus.Start);
             // Update sales data for each item in the order
             foreach (MenuItem item in order.GetOrderItems)
             {
@@ -57,6 +69,26 @@ namespace Group01RestaurantSystem
             SaveOrder();
             WriteSales();
         }
+        public void UpdateOrderStatus(Order order)
+        {
+            if (orderQueue.ContainsKey(order))
+            {
+                var currentStatus = orderQueue[order];
+                switch (currentStatus)
+                {
+                    case OrderStatus.Start:
+                        orderQueue[order] = OrderStatus.Preparing;
+                        break;
+                    case OrderStatus.Preparing:
+                        orderQueue[order] = OrderStatus.Finish;
+                        break;
+                    case OrderStatus.Finish:
+                        // Do nothing if the status is already Finish
+                        break;
+                }
+            }
+        }
+
 
         // Method to print sales data for each menu item
         public void PrintSalesData()
@@ -97,7 +129,6 @@ namespace Group01RestaurantSystem
                         if (deserializedSales != null && deserializedSales.Count > 0)
                         {
                             menuItemSales = deserializedSales;
-                            Console.WriteLine("Data has been read from sales_Data.json");
                         }
                         else
                         {

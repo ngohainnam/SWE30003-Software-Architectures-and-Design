@@ -1,0 +1,69 @@
+{
+  "1": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 1,
+        "GetName": "Chicken Alfredo",
+        "GetPrice": 12.99,
+        "GetDescription": "Fettuccine Alfredo with grilled chicken",
+        "GetCategory": "Entree"
+      },
+      {
+        "GetIndex": 1,
+        "GetName": "Chicken Alfredo",
+        "GetPrice": 12.99,
+        "GetDescription": "Fettuccine Alfredo with grilled chicken",
+        "GetCategory": "Entree"
+      }
+    ],
+    "GetCurrentTotal": 25.98,
+    "CurrentDateTime": "2024-05-22T17:38:32.7832314+10:00"
+  },
+  "2": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 3,
+        "GetName": "Caesar Salad",
+        "GetPrice": 8.99,
+        "GetDescription": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
+        "GetCategory": "Salad"
+      },
+      {
+        "GetIndex": 4,
+        "GetName": "House Salad",
+        "GetPrice": 7.99,
+        "GetDescription": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
+        "GetCategory": "Salad"
+      },
+      {
+        "GetIndex": 6,
+        "GetName": "Chocolate Cake",
+        "GetPrice": 5.99,
+        "GetDescription": "Chocolate cake with chocolate frosting",
+        "GetCategory": "Dessert"
+      }
+    ],
+    "GetCurrentTotal": 22.97,
+    "CurrentDateTime": "2024-05-22T17:38:42.3048987+10:00"
+  },
+  "3": {
+    "GetOrderItems": [
+      {
+        "GetIndex": 9,
+        "GetName": "Sweet Tea",
+        "GetPrice": 1.99,
+        "GetDescription": "Sweet tea",
+        "GetCategory": "Beverage"
+      },
+      {
+        "GetIndex": 10,
+        "GetName": "Unsweet Tea",
+        "GetPrice": 1.99,
+        "GetDescription": "Unsweet tea",
+        "GetCategory": "Beverage"
+      }
+    ],
+    "GetCurrentTotal": 3.98,
+    "CurrentDateTime": "2024-05-22T17:38:54.2748014+10:00"
+  }
+}
