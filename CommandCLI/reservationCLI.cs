@@ -54,7 +54,7 @@ namespace Group01RestaurantSystem.CommandCLI
         {
             bool successfulBooking = false;
             var attempts = 0;
-            string customerName = "";
+            string? customerName = "";
             while (!successfulBooking)
             {
                 attempts++;
@@ -107,7 +107,7 @@ namespace Group01RestaurantSystem.CommandCLI
         {
             Console.WriteLine("\nWho is the owner of the reservation that you would like to cancel? ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            string customerName = Console.ReadLine();
+            string? customerName = Console.ReadLine();
             Console.ResetColor();
 
             if (customerName == "")

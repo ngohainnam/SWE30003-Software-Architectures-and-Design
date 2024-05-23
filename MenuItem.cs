@@ -8,7 +8,6 @@
         public string Description { get; set; }
         public string Category { get; set; }
 
-        public MenuItem() { }
 
         public MenuItem(int index, string name, double price, string description, string category)
         {

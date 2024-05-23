@@ -7,7 +7,6 @@ namespace Group01RestaurantSystem
     {
         public Reservation()
         {
-            // Initialize tables if they are not already initialized in the database
         }
 
         public void ListAllTables()

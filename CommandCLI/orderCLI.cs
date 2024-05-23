@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 
@@ -21,9 +22,13 @@ namespace Group01RestaurantSystem.CommandCLI
         public override void Execute()
         {
             bool continueOrdering = true;
-            fMenu.PrintMenu();
             while (continueOrdering)
             {
+                Console.Clear();
+                fMenu.PrintMenu();
+                Console.WriteLine();
+                fOrder.PrintOrder();
+                Console.WriteLine();
                 Console.WriteLine("\nPlease select an option:");
                 Console.WriteLine("1: Add Item to Order");
                 Console.WriteLine("2: Remove Item from Order");
@@ -59,7 +64,11 @@ namespace Group01RestaurantSystem.CommandCLI
                         break;
 
                     case 3:
+                        Console.Clear();
+                        fMenu.PrintMenu();
+                        Console.WriteLine();
                         fOrder.PrintOrder();
+                        Console.WriteLine();
                         bool isValid = MakePayment();
                         if (isValid == false)
                         {
@@ -121,43 +130,116 @@ namespace Group01RestaurantSystem.CommandCLI
 
         private void AddItemToOrder()
         {
-            Console.WriteLine("Enter the index of the item to add:");
-            int index = Convert.ToInt32(Console.ReadLine()) - 1;
+            int index;
+            bool isValidInput = false;
+            Console.Clear();
+            fMenu.PrintMenu();
+            Console.WriteLine();
+            fOrder.PrintOrder();
+            Console.WriteLine();
+            while (!isValidInput)
+            {
+                Console.WriteLine("Enter the index of the item to add:");
+                string input = Console.ReadLine();
 
-            try
-            {
-                var item = fMenu.GetMenuItem(index);
-                fOrder.AddItem(item);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Added {item.Name} to your order.");
-                Console.ForegroundColor = ConsoleColor.White;   
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid index. Please try again.");
-                Console.ForegroundColor = ConsoleColor.White;
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Input cannot be empty. Please enter a valid index.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    fMenu.PrintMenu();
+                    Console.WriteLine();
+                    continue;
+                }
+
+                if (int.TryParse(input, out index))
+                {
+                    try
+                    {
+                        var item = fMenu.GetMenuItem(index);
+                        fOrder.AddItem(item);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Added {item.Name} to your order.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        isValidInput = true;
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid index. Please try again.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid input. Please enter a numeric index.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
         }
 
         private void RemoveItem()
         {
-            Console.WriteLine("Enter the index of the item (in the order) to remove:");
-            int index = Convert.ToInt32(Console.ReadLine()) - 1;
-            try
+            int index;
+            bool isValidInput = false;
+            Console.Clear();
+            fMenu.PrintMenu();
+            Console.WriteLine();
+            fOrder.PrintOrder();
+            Console.WriteLine();
+            while (!isValidInput)
             {
-                var item = fOrder.GetOrderItem(index);
-                fOrder.RemoveItem(item);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Removed {item.Name} from your order.");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("There is no item like that in your order.");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Enter the index of the item (in the order) to remove:");
+                string input = Console.ReadLine();
+                Console.Clear();
+                fMenu.PrintMenu();
+                Console.WriteLine();
+                fOrder.PrintOrder();
+                Console.WriteLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Input cannot be empty. Please enter a valid index.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    fMenu.PrintMenu();
+                    Console.WriteLine();
+                    continue;
+                }
+
+                if (int.TryParse(input, out index))
+                {
+                    index -= 1; // Adjust for zero-based index
+                    try
+                    {
+                        var item = fOrder.GetOrderItem(index);
+                        fOrder.RemoveItem(item);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Removed {item.Name} from your order.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        isValidInput = true;
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("There is no item like that in your order. Please try again.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid input. Please enter a numeric index.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
         }
+
     }
 }

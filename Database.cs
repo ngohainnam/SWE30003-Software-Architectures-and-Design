@@ -18,19 +18,15 @@ namespace Group01RestaurantSystem
     {
         private List<Order> orders;
         private List<OrderQueueEntry> orderQueue;
-        private Dictionary<string, double> menuItemSales;
         private static Database? instance;
         private static readonly object lockObject = new object();
         private List<Table> tables;
-        private double Revenue;
 
         public Database()
         {
             orders = new List<Order>();
             orderQueue = new List<OrderQueueEntry>();
-            menuItemSales = new Dictionary<string, double>();
             tables = new List<Table>();
-            ReadSales();
             ReadOrderQueue();
             DateTime now = DateTime.Now;
             string formattedDate = now.ToString("dd_MM_yy");
@@ -68,21 +64,40 @@ namespace Group01RestaurantSystem
             orders.Add(order);
             orderQueue.Add(new OrderQueueEntry(order, OrderStatus.Start));
             WriteOrderQueue();
-            // Update sales data for each item in the order
-            foreach (MenuItem item in order.OrderItems)
+            SaveOrder();
+        }
+        public void SaveOrder()
+        {
+            if (!Directory.Exists("Orders"))
             {
-                if (menuItemSales.ContainsKey(item.Name))
+                Directory.CreateDirectory("Orders");
+            }
+            DateTime now = DateTime.Now;
+            string formattedDate = now.ToString("dd_MM_yy");
+            string fileName = $"Orders/orders_{formattedDate}.json";
+            string jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(fileName, jsonString);
+            Console.WriteLine($"Data has been written to {fileName}");
+        }
+
+        public void ReadOrders(string date)
+        {
+            string fileName = $"Orders/orders_{date}.json";
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                var deserializedOrders = JsonSerializer.Deserialize<List<Order>>(jsonString);
+                if (deserializedOrders != null)
                 {
-                    menuItemSales[item.Name] += item.Price;  // Increment count for the item
+                    orders = deserializedOrders;
                 }
                 else
                 {
-                    menuItemSales.Add(item.Name, item.Price);  // Add new item with count 1
+                    Console.WriteLine($"No orders found for {date}");
                 }
             }
-            SaveOrder();
-            WriteSales();
         }
+
 
         public void UpdateOrderStatus(Order order)
         {
@@ -128,110 +143,6 @@ namespace Group01RestaurantSystem
             string fileName = $"OrderQueue/OrderQueue.json";
             string jsonString = JsonSerializer.Serialize(orderQueue, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(fileName, jsonString);
-            Console.WriteLine($"Data has been written to {fileName}");
-        }
-
-        public void SaveOrder()
-        {
-            if (!Directory.Exists("Orders"))
-            {
-                Directory.CreateDirectory("Orders");
-            }
-            DateTime now = DateTime.Now;
-            string formattedDate = now.ToString("dd_MM_yy");
-            string fileName = $"Orders/orders_{formattedDate}.json";
-            string jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(fileName, jsonString);
-            Console.WriteLine($"Data has been written to {fileName}");
-        }
-
-        public void ReadOrders(string date)
-        {
-            string fileName = $"Orders/orders_{date}.json";
-            if (File.Exists(fileName))
-            {
-                string jsonString = File.ReadAllText(fileName);
-                var deserializedOrders = JsonSerializer.Deserialize<List<Order>>(jsonString);
-                if (deserializedOrders != null)
-                {
-                    orders = deserializedOrders;
-                }
-                else
-                {
-                    Console.WriteLine($"No orders found for {date}");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Order file for {date} does not exist.");
-            }
-        }
-
-        public void PrintSalesData()
-        {
-            Console.WriteLine("\nSales Data for Menu Items:");
-            string header = String.Format("{0,-25} {1,-10}", "Item", "Revenue for each Item");
-            Console.WriteLine(header);
-            Console.WriteLine(new string('-', 100));
-
-            foreach (KeyValuePair<string, double> item in menuItemSales)
-            {
-                string line = String.Format("{0,-25} ${1,-10}", item.Key, item.Value);
-                Console.WriteLine(line);
-                Revenue += item.Value;
-            }
-            Console.WriteLine(new string('-', 100));
-            Console.WriteLine($"Total Revenue: ${Revenue}");
-            Console.WriteLine(new string('-', 100));
-            Console.WriteLine('\n');
-        }
-
-        public void ReadSales()
-        {
-            string salesFilePath = "sales_Data.json";
-
-            // Check if the sales data file exists
-            if (File.Exists(salesFilePath))
-            {
-                string salesJson = File.ReadAllText(salesFilePath);
-
-                if (!string.IsNullOrWhiteSpace(salesJson))
-                {
-                    try
-                    {
-                        var deserializedSales = JsonSerializer.Deserialize<Dictionary<string, double>>(salesJson);
-                        if (deserializedSales != null && deserializedSales.Count > 0)
-                        {
-                            menuItemSales = deserializedSales;
-                        }
-                        else
-                        {
-                            Console.WriteLine("sales_Data.json is empty. Initialized an empty sales dictionary.");
-                        }
-                    }
-                    catch (JsonException ex)
-                    {
-                        Console.WriteLine($"Failed to deserialize sales data: {ex.Message}");
-                        menuItemSales = new Dictionary<string, double>(); // Fallback to an empty dictionary
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("sales_Data.json is empty. Initialized an empty sales dictionary.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("sales_Data.json does not exist. Initialized an empty sales dictionary.");
-            }
-        }
-
-        public void WriteSales()
-        {
-            string salesFilePath = "sales_Data.json";
-            string updatedSalesJson = JsonSerializer.Serialize(menuItemSales, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(salesFilePath, updatedSalesJson);
-            Console.WriteLine("Sales data has been updated and written to sales_Data.json");
         }
 
         public void SaveReservation()
@@ -239,7 +150,6 @@ namespace Group01RestaurantSystem
             string reservationFilePath = "reservation_Data.json";
             string updatedReservationJson = JsonSerializer.Serialize(tables, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(reservationFilePath, updatedReservationJson);
-            Console.WriteLine("Reservation data has been updated and written to reservation_Data.json");
         }
 
         public void ReadReservation()
@@ -279,5 +189,75 @@ namespace Group01RestaurantSystem
                 Console.WriteLine("reservation_Data.json does not exist. Initialized an empty reservation list.");
             }
         }
+
+        public void ReadSalesData(DateTime startDate, DateTime endDate)
+        {
+            DateTime stDate = startDate;
+            DateTime etDate = endDate;
+
+            Dictionary<string, (double Price, int Quantity)> aggregatedSalesData = new Dictionary<string, (double, int)>();
+
+            while (stDate <= etDate)
+            {
+                string fileName = $"Orders/orders_{stDate:dd_MM_yy}.json";
+                if (File.Exists(fileName))
+                {
+                    string jsonString = File.ReadAllText(fileName);
+                    var deserializedOrders = JsonSerializer.Deserialize<List<Order>>(jsonString);
+                    if (deserializedOrders != null)
+                    {
+                        foreach (var order in deserializedOrders)
+                        {
+                            foreach (var item in order.OrderItems)
+                            {
+                                if (aggregatedSalesData.ContainsKey(item.Name))
+                                {
+                                    var currentData = aggregatedSalesData[item.Name];
+                                    aggregatedSalesData[item.Name] = (currentData.Price + item.Price, currentData.Quantity + 1);
+                                }
+                                else
+                                {
+                                    aggregatedSalesData[item.Name] = (item.Price, 1);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No orders found for {stDate:dd_MM_yy}");
+                        return;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Order file for {stDate:dd_MM_yy} does not exist.");
+                }
+                stDate = stDate.AddDays(1);
+            }
+
+            PrintAggregatedSalesData(aggregatedSalesData);
+        }
+
+        private void PrintAggregatedSalesData(Dictionary<string, (double Price, int Quantity)> salesData)
+        {
+            double totalRevenue = 0;
+            Console.WriteLine("\nAggregated Sales Data:");
+            string header = string.Format("{0,-25} {1,-10} {2,-10}", "Item", "Quantity", "Total Revenue");
+            Console.WriteLine(header);
+            Console.WriteLine(new string('-', 50));
+
+            foreach (var item in salesData)
+            {
+                string line = string.Format("{0,-25} {1,-10} ${2,-10}", item.Key, item.Value.Quantity, item.Value.Price);
+                Console.WriteLine(line);
+                totalRevenue += item.Value.Price;
+            }
+
+            Console.WriteLine(new string('-', 50));
+            Console.WriteLine($"Total Revenue: ${totalRevenue}");
+            Console.WriteLine(new string('-', 50));
+            Console.WriteLine();
+        }
+
     }
 }

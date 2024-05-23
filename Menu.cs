@@ -10,7 +10,6 @@ namespace Group01RestaurantSystem
     {
         private List<MenuItem> menuItems;
 
-
         public Menu()
         {
             menuItems = new List<MenuItem>();

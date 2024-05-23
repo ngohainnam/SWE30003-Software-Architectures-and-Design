@@ -1,12 +1,8 @@
 {
-  "Spaghetti": 24,
-  "House Salad": 11,
-  "Chocolate Cake": 4,
-  "Unsweet Tea": 2,
-  "Cheesecake": 8,
-  "Chicken Alfredo": 29,
-  "Caesar Salad": 13,
-  "Coke": 2,
-  "Sprite": 1,
-  "Sweet Tea": 1
+  //variable to current data in DD/MM/YYYY format
+  {
+    "Spaghetti": 21.98,
+    "Caesar Salad": 8.99,
+    "Chicken Alfredo": 12.99
+  }
 }
