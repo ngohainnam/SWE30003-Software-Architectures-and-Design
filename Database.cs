@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 namespace Group01RestaurantSystem
@@ -17,16 +18,17 @@ namespace Group01RestaurantSystem
     {
         private List<Order> orders;
         private List<OrderQueueEntry> orderQueue;
-        private Dictionary<string, int> menuItemSales;
+        private Dictionary<string, double> menuItemSales;
         private static Database? instance;
         private static readonly object lockObject = new object();
         private List<Table> tables;
+        private double Revenue;
 
         public Database()
         {
             orders = new List<Order>();
             orderQueue = new List<OrderQueueEntry>();
-            menuItemSales = new Dictionary<string, int>();
+            menuItemSales = new Dictionary<string, double>();
             tables = new List<Table>();
             ReadSales();
             ReadOrderQueue();
@@ -71,11 +73,11 @@ namespace Group01RestaurantSystem
             {
                 if (menuItemSales.ContainsKey(item.Name))
                 {
-                    menuItemSales[item.Name] += 1;  // Increment count for the item
+                    menuItemSales[item.Name] += item.Price;  // Increment count for the item
                 }
                 else
                 {
-                    menuItemSales.Add(item.Name, 1);  // Add new item with count 1
+                    menuItemSales.Add(item.Name, item.Price);  // Add new item with count 1
                 }
             }
             SaveOrder();
@@ -165,14 +167,22 @@ namespace Group01RestaurantSystem
             }
         }
 
-        // Method to print sales data for each menu item
         public void PrintSalesData()
         {
-            Console.WriteLine("Sales Data for Menu Items:");
-            foreach (KeyValuePair<string, int> item in menuItemSales)
+            Console.WriteLine("\nSales Data for Menu Items:");
+            string header = String.Format("{0,-25} {1,-10}", "Item", "Revenue for each Item");
+            Console.WriteLine(header);
+            Console.WriteLine(new string('-', 100));
+
+            foreach (KeyValuePair<string, double> item in menuItemSales)
             {
-                Console.WriteLine($"{item.Key}: {item.Value} sold");
+                string line = String.Format("{0,-25} ${1,-10}", item.Key, item.Value);
+                Console.WriteLine(line);
+                Revenue += item.Value;
             }
+            Console.WriteLine(new string('-', 100));
+            Console.WriteLine($"Total Revenue: ${Revenue}");
+            Console.WriteLine(new string('-', 100));
             Console.WriteLine('\n');
         }
 
@@ -189,7 +199,7 @@ namespace Group01RestaurantSystem
                 {
                     try
                     {
-                        var deserializedSales = JsonSerializer.Deserialize<Dictionary<string, int>>(salesJson);
+                        var deserializedSales = JsonSerializer.Deserialize<Dictionary<string, double>>(salesJson);
                         if (deserializedSales != null && deserializedSales.Count > 0)
                         {
                             menuItemSales = deserializedSales;
@@ -202,7 +212,7 @@ namespace Group01RestaurantSystem
                     catch (JsonException ex)
                     {
                         Console.WriteLine($"Failed to deserialize sales data: {ex.Message}");
-                        menuItemSales = new Dictionary<string, int>(); // Fallback to an empty dictionary
+                        menuItemSales = new Dictionary<string, double>(); // Fallback to an empty dictionary
                     }
                 }
                 else
