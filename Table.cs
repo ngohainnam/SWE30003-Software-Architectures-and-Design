@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Group01RestaurantSystem
 {
     public class Table
     {
-        private readonly int tableNo;
-        // private bool reserved;
-        private string customerName;
-        private bool[,] timeSlots;
-
-        private string[,] userSlot;
+        public int TableNo { get; set; }
+        public string CustomerName { get; set; }
+        public bool[][] TimeSlots { get; set; }
+        public string[][] UserSlots { get; set; }
 
         public enum DayOfWeek
         {
@@ -37,42 +28,26 @@ namespace Group01RestaurantSystem
             public const int DaysPerWeek = 7;
         }
 
-        public Table(int number)
+        public Table()
         {
-            this.timeSlots = new bool[TimeSlotConstants.DaysPerWeek, TimeSlotConstants.HoursPerDay];
-            this.userSlot = new string[TimeSlotConstants.DaysPerWeek, TimeSlotConstants.HoursPerDay];
-            for (int hour = Table.TimeSlotConstants.StartHour; hour < Table.TimeSlotConstants.EndHour; hour++)
-                    {
-                        for (int day = 0; day < Table.TimeSlotConstants.DaysPerWeek; day++)
-                        {
-                                userSlot[day, hour - Table.TimeSlotConstants.StartHour] = "";
-                        }
-                    }
-            this.tableNo = number;
-            this.customerName = "";
+            TimeSlots = new bool[TimeSlotConstants.DaysPerWeek][];
+            UserSlots = new string[TimeSlotConstants.DaysPerWeek][];
+            CustomerName = "";
+            for (int day = 0; day < TimeSlotConstants.DaysPerWeek; day++)
+            {
+                TimeSlots[day] = new bool[TimeSlotConstants.HoursPerDay];
+                UserSlots[day] = new string[TimeSlotConstants.HoursPerDay];
+                for (int hour = 0; hour < TimeSlotConstants.HoursPerDay; hour++)
+                {
+                    UserSlots[day][hour] = "";
+                }
+            }
         }
 
-        public int GetTableNo
+        public Table(int number) : this()
         {
-            get { return tableNo; }
-        }
-
-        public string CustomerName
-        {
-            get { return customerName; }
-            set { customerName = value; }
-        }
-
-        public bool[,] TimeSlot
-        {
-            get { return timeSlots; }
-            set { timeSlots = value; }
-        }
-
-        public string[,] UserSlot
-        {
-            get { return userSlot; }
-            set { userSlot = value; }
+            TableNo = number;
+            CustomerName = "";
         }
 
         public static DayOfWeek GetDayOfWeek(string day)

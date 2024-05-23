@@ -20,17 +20,20 @@ namespace Group01RestaurantSystem
         private Dictionary<string, int> menuItemSales;
         private static Database? instance;
         private static readonly object lockObject = new object();
+        private List<Table> tables;
 
         public Database()
         {
             orders = new List<Order>();
             orderQueue = new List<OrderQueueEntry>();
             menuItemSales = new Dictionary<string, int>();
+            tables = new List<Table>();
             ReadSales();
             ReadOrderQueue();
             DateTime now = DateTime.Now;
             string formattedDate = now.ToString("dd_MM_yy");
             ReadOrders(formattedDate);
+            ReadReservation();
         }
 
         // Singleton pattern 
@@ -48,6 +51,8 @@ namespace Group01RestaurantSystem
                 }
             }
         }
+
+        public List<Table> Tables => tables;
 
         public List<OrderQueueEntry> GetOrderQueue()
         {
@@ -217,6 +222,52 @@ namespace Group01RestaurantSystem
             string updatedSalesJson = JsonSerializer.Serialize(menuItemSales, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(salesFilePath, updatedSalesJson);
             Console.WriteLine("Sales data has been updated and written to sales_Data.json");
+        }
+
+        public void SaveReservation()
+        {
+            string reservationFilePath = "reservation_Data.json";
+            string updatedReservationJson = JsonSerializer.Serialize(tables, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(reservationFilePath, updatedReservationJson);
+            Console.WriteLine("Reservation data has been updated and written to reservation_Data.json");
+        }
+
+        public void ReadReservation()
+        {
+            string reservationFilePath = "reservation_Data.json";
+            if (File.Exists(reservationFilePath))
+            {
+                string reservationJson = File.ReadAllText(reservationFilePath);
+
+                if (!string.IsNullOrWhiteSpace(reservationJson))
+                {
+                    try
+                    {
+                        var deserializedReservation = JsonSerializer.Deserialize<List<Table>>(reservationJson);
+                        if (deserializedReservation != null && deserializedReservation.Count > 0)
+                        {
+                            tables = deserializedReservation;
+                        }
+                        else
+                        {
+                            Console.WriteLine("reservation_Data.json is empty. Initialized an empty reservation list.");
+                        }
+                    }
+                    catch (JsonException ex)
+                    {
+                        Console.WriteLine($"Failed to deserialize reservation data: {ex.Message}");
+                        tables = new List<Table>(); // Fallback to an empty list
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("reservation_Data.json is empty. Initialized an empty reservation list.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("reservation_Data.json does not exist. Initialized an empty reservation list.");
+            }
         }
     }
 }

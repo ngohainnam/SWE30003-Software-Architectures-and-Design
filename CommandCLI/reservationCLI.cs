@@ -9,6 +9,7 @@ namespace Group01RestaurantSystem.CommandCLI
     internal class reservationCLI : Command
     {
         private Reservation reservation;
+
         public reservationCLI()
         {
             reservation = new Reservation();
@@ -87,7 +88,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("Here are the booking time slots");
                 reservation.DisplayTimeSlots(tableNumber);
 
-                DayOfWeek day = reservation.GetUserDayOfWeekInput();
+                Table.DayOfWeek day = reservation.GetUserDayOfWeekInput();
 
                 Console.WriteLine("\nWhat time slot? (Write the hour only)");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -99,7 +100,6 @@ namespace Group01RestaurantSystem.CommandCLI
                 {
                     reservation.DisplayUserSlots(tableNumber);
                 }
-
             }
         }
 
@@ -118,7 +118,6 @@ namespace Group01RestaurantSystem.CommandCLI
                 return;
             }
 
-            // reservation.CancelReservation(customerName);
             reservation.CancelTimeSlot(customerName);
         }
     }
