@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Group01RestaurantSystem
@@ -15,19 +16,7 @@ namespace Group01RestaurantSystem
         //Constructor to initialize the menu with predefined items
         public Menu()
         {
-            menuItems = new List<MenuItem>
-            {
-                new MenuItem(1, "Chicken Alfredo", 12.99, "Fettuccine Alfredo with grilled chicken", "Entree"),
-                new MenuItem(2, "Spaghetti", 10.99, "Spaghetti with marinara sauce", "Entree"),
-                new MenuItem(3, "Caesar Salad", 8.99, "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing", "Salad"),
-                new MenuItem(4, "House Salad", 7.99, "Mixed greens, tomatoes, cucumbers, and choice of dressing", "Salad"),
-                new MenuItem(5, "Cheesecake", 5.99, "New York style cheesecake", "Dessert"),
-                new MenuItem(6, "Chocolate Cake", 5.99, "Chocolate cake with chocolate frosting", "Dessert"),
-                new MenuItem(7, "Coke", 1.99, "Coca-Cola", "Beverage"),
-                new MenuItem(8, "Sprite", 1.99, "Sprite", "Beverage"),
-                new MenuItem(9, "Sweet Tea", 1.99, "Sweet tea", "Beverage"),
-                new MenuItem(10, "Unsweet Tea", 1.99, "Unsweet tea", "Beverage")
-            };
+            menuItems = Database.Instance.ReadMenuItems();
         }
 
         //Method to print the entire menu
@@ -80,6 +69,10 @@ namespace Group01RestaurantSystem
         public List<MenuItem> getMenuItems
         {
             get { return menuItems; }
+        }
+        public List<MenuItem> setMenuItems
+        {
+            set { menuItems = value; }
         }
     }
 }

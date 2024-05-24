@@ -1,0 +1,79 @@
+[
+  {
+    "Index": 1,
+    "Price": 10,
+    "Name": "Spaghetti",
+    "Description": "Spaghetti with marinara sauce",
+    "Category": "Entree"
+  },
+  {
+    "Index": 2,
+    "Price": 8.99,
+    "Name": "Caesar Salad",
+    "Description": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
+    "Category": "Salad"
+  },
+  {
+    "Index": 3,
+    "Price": 7.99,
+    "Name": "House Salad",
+    "Description": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
+    "Category": "Salad"
+  },
+  {
+    "Index": 4,
+    "Price": 5.99,
+    "Name": "Cheesecake",
+    "Description": "New York style cheesecake",
+    "Category": "Dessert"
+  },
+  {
+    "Index": 5,
+    "Price": 5.99,
+    "Name": "Chocolate Cake",
+    "Description": "Chocolate cake with chocolate frosting",
+    "Category": "Dessert"
+  },
+  {
+    "Index": 6,
+    "Price": 1.99,
+    "Name": "Coke",
+    "Description": "Coca-Cola",
+    "Category": "Beverage"
+  },
+  {
+    "Index": 7,
+    "Price": 1.99,
+    "Name": "Sprite",
+    "Description": "Sprite",
+    "Category": "Beverage"
+  },
+  {
+    "Index": 8,
+    "Price": 1.99,
+    "Name": "Sweet Tea",
+    "Description": "Sweet tea",
+    "Category": "Beverage"
+  },
+  {
+    "Index": 9,
+    "Price": 1.99,
+    "Name": "Unsweet Tea",
+    "Description": "Unsweet tea",
+    "Category": "Beverage"
+  },
+  {
+    "Index": 10,
+    "Price": 22.22,
+    "Name": "carbonara spaghetti",
+    "Description": "creamy sauce, egg yolk, cheesy goodness",
+    "Category": "Entree"
+  },
+  {
+    "Index": 11,
+    "Price": 6.99,
+    "Name": "avocado smoothie",
+    "Description": "thick, rich and creamy ",
+    "Category": "Beverage"
+  }
+]

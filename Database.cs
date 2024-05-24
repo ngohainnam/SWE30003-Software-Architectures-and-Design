@@ -84,7 +84,6 @@ namespace Group01RestaurantSystem
             string fileName = $"Orders/orders_{formattedDate}.json"; //Generate file name based on current date
             string jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions { WriteIndented = true }); //Serialize the orders list to JSON
             File.WriteAllText(fileName, jsonString);        //Write the JSON string to the file
-            Console.WriteLine($"Data has been written to {fileName}");
         }
 
         //Method to read orders from a file
@@ -265,17 +264,49 @@ namespace Group01RestaurantSystem
 
             foreach (var item in salesData)
             {
-                string line = string.Format("{0,-25} {1,-10} ${2,-10}", item.Key, item.Value.Quantity, item.Value.Price); //Format the line for each item
+                string line = string.Format("{0,-25} {1,-10} ${2,-10}", item.Key, item.Value.Quantity, Math.Round(item.Value.Price,2)); //Format the line for each item
                 Console.WriteLine(line);
                 totalRevenue += item.Value.Price; //Add to the total revenue
             }
 
             Console.WriteLine(new string('-', 50));
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Total Revenue: ${totalRevenue}"); //Print the total revenue
+            Console.WriteLine($"Total Revenue: ${Math.Round(totalRevenue, 2)}"); //Print the total revenue
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(new string('-', 50));
             Console.WriteLine();
+        }
+
+        public void WriteMenuItems(List<MenuItem> menu)
+        {
+            string reservationFilePath = "Menu/Menu.json"; //Define the file path
+            string updatedReservationJson = JsonSerializer.Serialize(menu, new JsonSerializerOptions { WriteIndented = true }); //Serialize the tables list to JSON
+            File.WriteAllText(reservationFilePath, updatedReservationJson); //Write the JSON string to the file
+        }
+        public List<MenuItem> ReadMenuItems()
+        {
+            string menuFilePath = "Menu/Menu.json"; //Define the file path
+            List<MenuItem> ReturnMenu = new List<MenuItem>();
+            if (File.Exists(menuFilePath))
+            {
+                string jsonString = File.ReadAllText(menuFilePath); //Read the JSON string from the file
+                var deserializedOrders = JsonSerializer.Deserialize<List<MenuItem>>(jsonString); //Deserialize the JSON string to a list of orders
+                if (deserializedOrders != null)
+                {
+                    ReturnMenu = deserializedOrders;            //Set the orders list to the deserialized data
+                }
+                else
+                {
+                    Console.WriteLine($"No orders found for {menuFilePath}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("file directory does not exist");
+
+            }
+            return ReturnMenu;
+
         }
     }
 }

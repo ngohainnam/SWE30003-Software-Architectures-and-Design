@@ -34,7 +34,7 @@ namespace Group01RestaurantSystem.Transaction
         //Method to process the cash payment
         public override bool ProcessPayment()
         {
-            Console.WriteLine($"Processing cash payment for amount ${TotalBill}...");
+            Console.WriteLine($"Processing cash payment for amount ${Math.Round(TotalBill, 2)}...");
 
             //Calculate the change to be given back
             double change = AmountPaid - TotalBill;
@@ -43,7 +43,7 @@ namespace Group01RestaurantSystem.Transaction
             if (change > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green; 
-                Console.WriteLine($"\nCash payment processed. Change given: ${change}");
+                Console.WriteLine($"\nCash payment processed. Change given: ${Math.Round(change, 2)}");
                 Console.ForegroundColor = ConsoleColor.White; 
                 return true; //Payment successful
             }

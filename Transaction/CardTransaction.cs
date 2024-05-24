@@ -28,7 +28,7 @@ namespace Group01RestaurantSystem.Transaction
         // Method to process the card payment
         public override bool ProcessPayment()
         {
-            Console.WriteLine($"Processing card payment for amount ${TotalBill}...");
+            Console.WriteLine($"Processing card payment for amount ${Math.Round(TotalBill, 2)}...");
 
             // Generate a random card amount for the payment simulation
             Random random = new Random();
@@ -37,7 +37,7 @@ namespace Group01RestaurantSystem.Transaction
             // Check if the card amount is greater than the total bill
             if (cardamount > TotalBill)
             {
-                Console.WriteLine($"Card amount: ${cardamount}");
+                Console.WriteLine($"Card amount: ${Math.Round(cardamount, 2)}");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\nCard payment processed.");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -45,7 +45,7 @@ namespace Group01RestaurantSystem.Transaction
             }
             else
             {
-                Console.WriteLine($"Card amount: ${cardamount}");
+                Console.WriteLine($"Card amount: ${Math.Round(cardamount, 2)}");
                 Console.ForegroundColor = ConsoleColor.Red; 
                 Console.WriteLine("\nCard payment failed.");
                 Console.ForegroundColor = ConsoleColor.White;
