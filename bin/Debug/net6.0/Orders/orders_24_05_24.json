@@ -118,5 +118,58 @@
     ],
     "Total": 8.99,
     "CurrentDateTime": "2024-05-24T03:02:04.662973+10:00"
+  },
+  {
+    "OrderItems": [
+      {
+        "Index": 3,
+        "Price": 8.99,
+        "Name": "Caesar Salad",
+        "Description": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
+        "Category": "Salad"
+      }
+    ],
+    "Total": 8.99,
+    "CurrentDateTime": "2024-05-24T16:43:49.5727255+10:00"
+  },
+  {
+    "OrderItems": [
+      {
+        "Index": 8,
+        "Price": 1.99,
+        "Name": "Sprite",
+        "Description": "Sprite",
+        "Category": "Beverage"
+      }
+    ],
+    "Total": 1.9900000000000004,
+    "CurrentDateTime": "2024-05-24T17:01:17.8086242+10:00"
+  },
+  {
+    "OrderItems": [
+      {
+        "Index": 1,
+        "Price": 12.99,
+        "Name": "Chicken Alfredo",
+        "Description": "Fettuccine Alfredo with grilled chicken",
+        "Category": "Entree"
+      },
+      {
+        "Index": 4,
+        "Price": 7.99,
+        "Name": "House Salad",
+        "Description": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
+        "Category": "Salad"
+      },
+      {
+        "Index": 6,
+        "Price": 5.99,
+        "Name": "Chocolate Cake",
+        "Description": "Chocolate cake with chocolate frosting",
+        "Category": "Dessert"
+      }
+    ],
+    "Total": 26.97,
+    "CurrentDateTime": "2024-05-24T17:33:59.8148393+10:00"
   }
 ]

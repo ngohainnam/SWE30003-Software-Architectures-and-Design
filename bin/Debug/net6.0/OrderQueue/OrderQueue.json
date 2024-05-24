@@ -1,46 +1,6 @@
 [
   {
     "Order": {
-      "OrderItems": [],
-      "Total": 0,
-      "CurrentDateTime": "2024-05-23T02:04:28.9849881+10:00"
-    },
-    "Status": 1
-  },
-  {
-    "Order": {
-      "OrderItems": [],
-      "Total": 0,
-      "CurrentDateTime": "2024-05-23T02:21:41.4896555+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [],
-      "Total": 0,
-      "CurrentDateTime": "2024-05-23T02:37:02.1695545+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [],
-      "Total": 0,
-      "CurrentDateTime": "2024-05-23T02:37:36.229991+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [],
-      "Total": 0,
-      "CurrentDateTime": "2024-05-23T02:39:17.1783705+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
       "OrderItems": [
         {
           "Index": 1,
@@ -48,199 +8,6 @@
           "Name": "Chicken Alfredo",
           "Description": "Fettuccine Alfredo with grilled chicken",
           "Category": "Entree"
-        },
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 23.98,
-      "CurrentDateTime": "2024-05-23T02:52:28.6063896+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        },
-        {
-          "Index": 3,
-          "Price": 8.99,
-          "Name": "Caesar Salad",
-          "Description": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
-          "Category": "Salad"
-        }
-      ],
-      "Total": 19.98,
-      "CurrentDateTime": "2024-05-23T02:52:58.5747923+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 12.99,
-      "CurrentDateTime": "2024-05-23T14:59:58.9828737+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 12.99,
-      "CurrentDateTime": "2024-05-23T15:37:47.317319+10:00"
-    },
-    "Status": 1
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 12.99,
-      "CurrentDateTime": "2024-05-23T15:39:56.293688+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        },
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 23.98,
-      "CurrentDateTime": "2024-05-24T00:22:19.0082239+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        },
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 23.98,
-      "CurrentDateTime": "2024-05-24T00:35:04.7535256+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        },
-        {
-          "Index": 3,
-          "Price": 8.99,
-          "Name": "Caesar Salad",
-          "Description": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
-          "Category": "Salad"
-        }
-      ],
-      "Total": 19.98,
-      "CurrentDateTime": "2024-05-24T00:46:42.7586296+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        },
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        }
-      ],
-      "Total": 23.98,
-      "CurrentDateTime": "2024-05-24T00:47:25.9406861+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
-          "Index": 2,
-          "Price": 10.99,
-          "Name": "Spaghetti",
-          "Description": "Spaghetti with marinara sauce",
-          "Category": "Entree"
-        },
-        {
-          "Index": 3,
-          "Price": 8.99,
-          "Name": "Caesar Salad",
-          "Description": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
-          "Category": "Salad"
         },
         {
           "Index": 4,
@@ -248,26 +15,17 @@
           "Name": "House Salad",
           "Description": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
           "Category": "Salad"
-        }
-      ],
-      "Total": 27.97,
-      "CurrentDateTime": "2024-05-24T02:49:45.2944323+10:00"
-    },
-    "Status": 0
-  },
-  {
-    "Order": {
-      "OrderItems": [
+        },
         {
-          "Index": 3,
-          "Price": 8.99,
-          "Name": "Caesar Salad",
-          "Description": "Romaine lettuce, croutons, parmesan cheese, and Caesar dressing",
-          "Category": "Salad"
+          "Index": 6,
+          "Price": 5.99,
+          "Name": "Chocolate Cake",
+          "Description": "Chocolate cake with chocolate frosting",
+          "Category": "Dessert"
         }
       ],
-      "Total": 8.99,
-      "CurrentDateTime": "2024-05-24T03:02:04.662973+10:00"
+      "Total": 26.97,
+      "CurrentDateTime": "2024-05-24T17:33:59.8148393+10:00"
     },
     "Status": 0
   }

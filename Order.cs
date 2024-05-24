@@ -16,24 +16,24 @@ namespace Group01RestaurantSystem
             Total = 0;
         }
 
-        // Method to add an item to the order
+        //Method to add an item to the order
         public void AddItem(MenuItem item)
         {
             OrderItems.Add(item);
-            Total += item.Price;  // Update total price whenever an item is added
+            Total += item.Price;  //Update total price whenever an item is added
         }
 
-        // Method to remove an item from the order
+        //Method to remove an item from the order
         public void RemoveItem(MenuItem item)
         {
             if (OrderItems.Contains(item))
             {
                 OrderItems.Remove(item);
-                Total -= item.Price;  // Update total price whenever an item is removed
+                Total -= item.Price;  //Update total price whenever an item is removed
             }
         }
 
-        // Method to print the current order and total
+        //Method to print the current order and total
         public void PrintOrder()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -48,7 +48,7 @@ namespace Group01RestaurantSystem
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        // Method to get the total price of the order
+        //Method to get the total price of the order
         public double GetTotal()
         {
             return Total;

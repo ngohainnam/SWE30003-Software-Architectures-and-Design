@@ -6,46 +6,53 @@ using System.Threading.Tasks;
 
 namespace Group01RestaurantSystem.Transaction
 {
+    //Class to handle cash transactions
     public class CashTransaction : Payment
     {
+        //Private field to store the amount paid
         private double _amountPaid;
 
+        //Public property to access and modify the amount paid
         public double AmountPaid
         {
             get
             {
-                return _amountPaid;
+                return _amountPaid; //Return the amount paid
             }
             set
             {
-                _amountPaid = value;
+                _amountPaid = value; //Set the amount paid
             }
         }
 
+        //Constructor to initialize the amount paid and the total bill amount
         public CashTransaction(double amountPaid, double TotalBill) : base(TotalBill)
         {
-            AmountPaid = amountPaid;
+            AmountPaid = amountPaid; //Set the amount paid
         }
 
+        //Method to process the cash payment
         public override bool ProcessPayment()
         {
             Console.WriteLine($"Processing cash payment for amount ${TotalBill}...");
 
+            //Calculate the change to be given back
             double change = AmountPaid - TotalBill;
 
-            if ( change > 0 )
+            //Check if the amount paid is sufficient to cover the total bill
+            if (change > 0)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Green; 
                 Console.WriteLine($"\nCash payment processed. Change given: ${change}");
-                Console.ForegroundColor = ConsoleColor.White;
-                return true;
+                Console.ForegroundColor = ConsoleColor.White; 
+                return true; //Payment successful
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red; 
                 Console.WriteLine("\nNot enough cash to pay for the order...Please take your cash back.");
-                Console.ForegroundColor = ConsoleColor.White;
-                return false;
+                Console.ForegroundColor = ConsoleColor.White; 
+                return false; //Payment failed
             }
         }
     }

@@ -8,9 +8,11 @@ namespace Group01RestaurantSystem
 {
     internal class OrderQueueEntry
     {
+        //Define variables needed
         public Order Order { get; set; }
         public OrderStatus Status { get; set; }
 
+        //Making a constructor
         public OrderQueueEntry(Order order, OrderStatus status)
         {
             Order = order;
