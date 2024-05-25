@@ -22,7 +22,7 @@ namespace Group01RestaurantSystem.CommandCLI
             bool continueReservation = true;
             while (continueReservation)
             {
-                Command.ClearScreen(); // Clear the console screen
+                Console.Clear();
                 ListAllTables(); // List all available tables
                 Console.WriteLine("\nWhat would you like to do?");
                 Console.WriteLine("1: Make Reservation");
@@ -96,7 +96,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     }
                 }
 
-                Command.ClearScreen(); // Clear the console screen
+                Console.Clear();
                 Console.WriteLine("Here are the booking time slots");
                 reservation.DisplayTimeSlots(tableNumber); // Display available time slots for the table
 
@@ -133,7 +133,7 @@ namespace Group01RestaurantSystem.CommandCLI
             }
 
             reservation.CancelTimeSlot(customerName); // Cancel the reservation for the customer
-            Command.ClearScreen(); // Clear the console screen
+            Console.Clear();
         }
     }
 }

@@ -15,8 +15,7 @@ namespace Group01RestaurantSystem.CommandCLI
         //Overridden Execute method to display and handle the kitchen menu
         public override void Execute()
         {
-            //Clear the console screen
-            Command.ClearScreen();
+            Console.Clear();
             //Infinite loop to continuously display the menu until the user chooses to exit
             while (true)
             {
@@ -32,9 +31,9 @@ namespace Group01RestaurantSystem.CommandCLI
                 {
                     //Case for viewing the food queue
                     case 1:
-                        Command.ClearScreen();
+                        Console.Clear();
                         ViewFoodQueue();
-                        Command.ClearScreen();
+                        Console.Clear();
                         break;
                     //Case for exiting the kitchen menu
                     case 2:
@@ -137,7 +136,7 @@ namespace Group01RestaurantSystem.CommandCLI
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadLine();
-                        Command.ClearScreen();
+                        Console.Clear();
                         ViewFoodQueue();
                         break;
 
