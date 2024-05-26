@@ -67,7 +67,7 @@ namespace Group01RestaurantSystem
         {
             order.CurrentDateTime = DateTime.Now;           //Set the current date and time for the order
             orders.Add(order);                              //Add the order to the list of orders
-            orderQueue.Add(new OrderQueueEntry(order, OrderStatus.Start)); //Add the order to the order queue with status "Start"
+            orderQueue.Add(new OrderQueueEntry(order, OrderStatus.Start, orderQueue.Count > 0 ? orderQueue.Last().Number + 1 : 1)); //Ternary operation is used for case where orderQueue is empty
             WriteOrderQueue();                              //Write the updated order queue to file
             SaveOrder();                                    //Save the updated orders to file
         }

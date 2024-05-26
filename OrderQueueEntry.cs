@@ -11,12 +11,14 @@ namespace Group01RestaurantSystem
         //Define variables needed
         public Order Order { get; set; }
         public OrderStatus Status { get; set; }
+        public int Number { get; set; }
 
         //Making a constructor
-        public OrderQueueEntry(Order order, OrderStatus status)
+        public OrderQueueEntry(Order order, OrderStatus status, int number)
         {
             Order = order;
             Status = status;
+            Number = number;
         }
     }
 }

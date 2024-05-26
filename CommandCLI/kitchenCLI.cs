@@ -68,6 +68,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 {
                     var order = entry.Order;
                     var status = entry.Status;
+                    var number = entry.Number;
 
                     //Set color based on order status
                     switch (status)
@@ -89,7 +90,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
                     //Print order details in a formatted box
                     Console.WriteLine(horizontalLine);
-                    PrintLine($"Order No: {counter1++}", boxWidth);
+                    PrintLine($"Order No: {number}", boxWidth);
                     PrintLine($"Status: {status}", boxWidth);
                     Console.WriteLine(new string('-', boxWidth));
 
@@ -123,7 +124,7 @@ namespace Group01RestaurantSystem.CommandCLI
                         //Loop through the order queue to find and update the specified order
                         foreach (var entry in orderQueue)
                         {
-                            if (counter1++ == OrderNo)
+                            if (entry.Number == OrderNo)
                             {
                                 database.UpdateOrderStatus(entry.Order);
                                 ViewFoodQueue();
@@ -135,7 +136,7 @@ namespace Group01RestaurantSystem.CommandCLI
                         Console.WriteLine("Order Does not exist!");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Press any key to continue...");
-                        Console.ReadLine();
+                        Console.ReadKey();
                         Console.Clear();
                         ViewFoodQueue();
                         break;

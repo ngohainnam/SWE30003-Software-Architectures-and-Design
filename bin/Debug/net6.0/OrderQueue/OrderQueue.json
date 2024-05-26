@@ -27,7 +27,8 @@
       "Total": 26.97,
       "CurrentDateTime": "2024-05-24T17:33:59.8148393+10:00"
     },
-    "Status": 0
+    "Status": 0,
+    "Number": 1
   },
   {
     "Order": {
@@ -43,6 +44,7 @@
       "Total": 8.989999999999998,
       "CurrentDateTime": "2024-05-24T22:53:52.9935095+10:00"
     },
-    "Status": 0
+    "Status": 0,
+    "Number": 1
   }
 ]
