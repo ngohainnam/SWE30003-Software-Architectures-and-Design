@@ -1,0 +1,15 @@
+[
+  {
+    "OrderItems": [
+      {
+        "Index": 1,
+        "Price": 10,
+        "Name": "Spaghetti",
+        "Description": "Spaghetti with marinara sauce",
+        "Category": "Entree"
+      }
+    ],
+    "Total": 10,
+    "CurrentDateTime": "2024-05-27T17:33:32.4660049+10:00"
+  }
+]

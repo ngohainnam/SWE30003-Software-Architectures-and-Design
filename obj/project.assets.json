@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_3\\Group01RestaurantSystem.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_4\\Group01RestaurantSystem.csproj",
       "projectName": "Group01RestaurantSystem",
-      "projectPath": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_3\\Group01RestaurantSystem.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_4\\Group01RestaurantSystem.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_3\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_4\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

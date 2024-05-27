@@ -30,7 +30,22 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("3: Exit");
                 Console.WriteLine("Enter your option: ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                int choice = Convert.ToInt32(Console.ReadLine());
+                String? input = Console.ReadLine();
+                while (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option. Please try again.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    ListAllTables();
+                    Console.WriteLine("\nWhat would you like to do?");
+                    Console.WriteLine("1: Make Reservation");
+                    Console.WriteLine("2: Cancel Reservation");
+                    Console.WriteLine("3: Exit");
+                    Console.WriteLine("Enter your option: ");
+                    input = Console.ReadLine();
+                }
+                int choice = Convert.ToInt32(input);
                 Console.ResetColor();
 
                 // Handle user choices
@@ -77,8 +92,20 @@ namespace Group01RestaurantSystem.CommandCLI
                 }
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                int tableNumber = Convert.ToInt32(Console.ReadLine());
+                string? input = Console.ReadLine();
+                while (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option. Please try again.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    ListAllTables();
+                    Console.WriteLine("\nWhat table would you like to reserve?");
+                    input = Console.ReadLine();
+                }
+                int tableNumber = Convert.ToInt32(input);
                 Console.ResetColor();
+
 
                 if (attempts == 1)
                 {

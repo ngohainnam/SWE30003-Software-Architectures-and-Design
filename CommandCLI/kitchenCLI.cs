@@ -25,7 +25,20 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.Write("Select an option: ");
 
                 //Read user input and convert it to an integer
-                choice = Convert.ToInt32(Console.ReadLine());
+                string? input = Console.ReadLine();
+                while(string.IsNullOrWhiteSpace(input))
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option. Please try again.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("1. View food queue");
+                    Console.WriteLine("2. Exit");
+                    Console.Write("Select an option: ");
+                    input = Console.ReadLine();
+                }
+                choice = Convert.ToInt32(input);
+
                 //Switch case to handle the user's choice
                 switch (choice)
                 {
@@ -40,6 +53,7 @@ namespace Group01RestaurantSystem.CommandCLI
                         return;
                     //Default case for handling invalid options
                     default:
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option. Please try again.");
                         Console.ForegroundColor = ConsoleColor.White;
@@ -61,7 +75,6 @@ namespace Group01RestaurantSystem.CommandCLI
             }
             else
             {
-                int counter1 = 1;
 
                 //Loop through the order queue to display each order and its status
                 foreach (var entry in orderQueue)
@@ -112,7 +125,20 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("1. Update status");
                 Console.WriteLine("2. Exit");
                 Console.Write("Select an option: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
+                string? input = Console.ReadLine();
+                while (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option. Please try again.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return;
+                }
+                choice = Convert.ToInt32(input);
+
                 //Switch case to handle the user's choice for updating order status or exiting
                 switch (choice)
                 {
@@ -120,7 +146,6 @@ namespace Group01RestaurantSystem.CommandCLI
                     case 1:
                         Console.WriteLine("Enter Order No: ");
                         int OrderNo = Convert.ToInt32(Console.ReadLine());
-                        counter1 = 1;
                         //Loop through the order queue to find and update the specified order
                         foreach (var entry in orderQueue)
                         {
@@ -147,6 +172,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
                     //Default case for handling invalid options
                     default:
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option. Please try again.");
                         Console.ForegroundColor = ConsoleColor.White;

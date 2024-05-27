@@ -15,14 +15,9 @@ namespace Group01RestaurantSystem.Transaction
         // Constructor to initialize the card number and the total bill amount
         public CardTransaction(string cardNumber, double TotalBill) : base(TotalBill)
         {
-            if (IsValidCardNumber(cardNumber))
-            {
+
+            // Check if the card number is valid
                 CardNumber = cardNumber; // Set the card number if valid
-            }
-            else
-            {
-                throw new ArgumentException("Invalid card number format. Expected format is XXXX-YYYY-ZZZZ-MMMM.");
-            }
         }
 
         // Method to process the card payment
@@ -35,19 +30,29 @@ namespace Group01RestaurantSystem.Transaction
             double cardamount = random.Next(0, 100);
 
             // Check if the card amount is greater than the total bill
-            if (cardamount > TotalBill)
+            if(IsValidCardNumber(CardNumber))
             {
-                Console.WriteLine($"Card amount: ${Math.Round(cardamount, 2)}");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\nCard payment processed.");
-                Console.ForegroundColor = ConsoleColor.White;
-                return true; // Payment successful
+                if (cardamount > TotalBill)
+                {
+                    Console.WriteLine($"Card amount: ${Math.Round(cardamount, 2)}");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nCard payment processed.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    return true; // Payment successful
+                }
+                else
+                {
+                    Console.WriteLine($"Card amount: ${Math.Round(cardamount, 2)}");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nCard payment failed.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    return false; // Payment failed
+                }
             }
             else
             {
-                Console.WriteLine($"Card amount: ${Math.Round(cardamount, 2)}");
-                Console.ForegroundColor = ConsoleColor.Red; 
-                Console.WriteLine("\nCard payment failed.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid card number format. Expected format is XXXX-YYYY-ZZZZ-MMMM.");
                 Console.ForegroundColor = ConsoleColor.White;
                 return false; // Payment failed
             }

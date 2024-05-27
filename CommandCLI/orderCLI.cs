@@ -103,13 +103,30 @@ namespace Group01RestaurantSystem.CommandCLI
             Console.WriteLine("\nSelect payment option:");
             Console.WriteLine("1: Card payment");
             Console.WriteLine("2: Cash payment");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            String? input = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(input))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid option. Please try again.");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("1: Card payment");
+                Console.WriteLine("2: Cash payment");
+                input = Console.ReadLine();
+            }
+            int choice = Convert.ToInt32(input);
 
             switch (choice)
             {
                 case 1:
                     Console.WriteLine("Enter your bank account number: ");
-                    string account = Console.ReadLine() ?? "";
+                    string? account = Console.ReadLine();
+                    while (string.IsNullOrWhiteSpace(account))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Account number cannot be empty. Please enter a valid account number.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        account = Console.ReadLine();
+                    }
                     Payment cardPayment = new CardTransaction(account, fOrder.GetTotal()); //Process card payment
                     bool isValid1 = cardPayment.ProcessPayment();
                     if (!isValid1)
