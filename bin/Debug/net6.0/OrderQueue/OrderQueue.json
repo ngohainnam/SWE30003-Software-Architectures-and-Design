@@ -3,37 +3,6 @@
     "Order": {
       "OrderItems": [
         {
-          "Index": 1,
-          "Price": 12.99,
-          "Name": "Chicken Alfredo",
-          "Description": "Fettuccine Alfredo with grilled chicken",
-          "Category": "Entree"
-        },
-        {
-          "Index": 4,
-          "Price": 7.99,
-          "Name": "House Salad",
-          "Description": "Mixed greens, tomatoes, cucumbers, and choice of dressing",
-          "Category": "Salad"
-        },
-        {
-          "Index": 6,
-          "Price": 5.99,
-          "Name": "Chocolate Cake",
-          "Description": "Chocolate cake with chocolate frosting",
-          "Category": "Dessert"
-        }
-      ],
-      "Total": 26.97,
-      "CurrentDateTime": "2024-05-24T17:33:59.8148393+10:00"
-    },
-    "Status": 2,
-    "Number": 1
-  },
-  {
-    "Order": {
-      "OrderItems": [
-        {
           "Index": 2,
           "Price": 8.99,
           "Name": "Caesar Salad",

@@ -139,6 +139,8 @@ namespace Group01RestaurantSystem.CommandCLI
                 if (successfulBooking)
                 {
                     reservation.DisplayUserSlots(tableNumber); // Display the booked slots
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
                 }
             }
         }

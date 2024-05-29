@@ -27,6 +27,7 @@ namespace Group01RestaurantSystem
         //Constructor to initialize the database and read initial data
         public Database()
         {
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             orders = new List<Order>();
             orderQueue = new List<OrderQueueEntry>();
             tables = new List<Table>();
