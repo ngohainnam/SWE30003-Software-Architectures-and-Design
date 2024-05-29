@@ -165,7 +165,7 @@ namespace Group01RestaurantSystem
         //Method to read reservations from a file
         public void ReadReservation()
         {
-            Console.WriteLine("Current directory: " + Directory.GetCurrentDirectory());
+            // Console.WriteLine("Current directory: " + Directory.GetCurrentDirectory());
             string reservationFilePath = "reservation_Data.json"; //DefineF the file path
             if (File.Exists(reservationFilePath))
             {
