@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-
 namespace Group01RestaurantSystem
 {
     //Enum to represent the status of an order
@@ -27,6 +26,7 @@ namespace Group01RestaurantSystem
         //Constructor to initialize the database and read initial data
         public Database()
         {
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             orders = new List<Order>();
             orderQueue = new List<OrderQueueEntry>();
             tables = new List<Table>();
@@ -165,7 +165,8 @@ namespace Group01RestaurantSystem
         //Method to read reservations from a file
         public void ReadReservation()
         {
-            string reservationFilePath = "reservation_Data.json"; //Define the file path
+            Console.WriteLine("Current directory: " + Directory.GetCurrentDirectory());
+            string reservationFilePath = "reservation_Data.json"; //DefineF the file path
             if (File.Exists(reservationFilePath))
             {
                 string reservationJson = File.ReadAllText(reservationFilePath); //Read the JSON string from the file
