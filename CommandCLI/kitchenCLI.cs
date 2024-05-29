@@ -3,30 +3,37 @@ using System.Collections.Generic;
 
 namespace Group01RestaurantSystem.CommandCLI
 {
-    //Class to handle kitchen command line interface operations, inheriting from the abstract Command class
-    internal class kitchenCLI : Command
+    /// <summary>
+    /// Class to handle kitchen command line interface operations, inheriting from the abstract Command class.
+    /// </summary>
+    internal class KitchenCLI : Command
     {
         private int choice;
-        //Constructor for kitchenCLI class
-        public kitchenCLI()
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KitchenCLI"/> class.
+        /// </summary>
+        public KitchenCLI()
         {
         }
 
-        //Overridden Execute method to display and handle the kitchen menu
+        /// <summary>
+        /// Overridden Execute method to display and handle the kitchen menu.
+        /// </summary>
         public override void Execute()
         {
             Console.Clear();
-            //Infinite loop to continuously display the menu until the user chooses to exit
+            // Infinite loop to continuously display the menu until the user chooses to exit
             while (true)
             {
-                //Display menu options
+                // Display menu options
                 Console.WriteLine("1. View food queue");
                 Console.WriteLine("2. Exit");
                 Console.Write("Select an option: ");
 
-                //Read user input and convert it to an integer
+                // Read user input and convert it to an integer
                 string? input = Console.ReadLine();
-                while(string.IsNullOrWhiteSpace(input))
+                while (string.IsNullOrWhiteSpace(input))
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -39,19 +46,19 @@ namespace Group01RestaurantSystem.CommandCLI
                 }
                 choice = Convert.ToInt32(input);
 
-                //Switch case to handle the user's choice
+                // Switch case to handle the user's choice
                 switch (choice)
                 {
-                    //Case for viewing the food queue
+                    // Case for viewing the food queue
                     case 1:
                         Console.Clear();
                         ViewFoodQueue();
                         Console.Clear();
                         break;
-                    //Case for exiting the kitchen menu
+                    // Case for exiting the kitchen menu
                     case 2:
                         return;
-                    //Default case for handling invalid options
+                    // Default case for handling invalid options
                     default:
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -62,28 +69,29 @@ namespace Group01RestaurantSystem.CommandCLI
             }
         }
 
-        //Method to view the food queue and handle order status updates
+        /// <summary>
+        /// Method to view the food queue and handle order status updates.
+        /// </summary>
         private void ViewFoodQueue()
         {
             var database = Database.Instance;
             var orderQueue = database.GetOrderQueue();
 
-            //Check if the order queue is empty
+            // Check if the order queue is empty
             if (orderQueue.Count == 0)
             {
                 Console.WriteLine("No orders in the queue.");
             }
             else
             {
-
-                //Loop through the order queue to display each order and its status
+                // Loop through the order queue to display each order and its status
                 foreach (var entry in orderQueue)
                 {
                     var order = entry.Order;
                     var status = entry.Status;
                     var number = entry.Number;
 
-                    //Set color based on order status
+                    // Set color based on order status
                     switch (status)
                     {
                         case OrderStatus.Start:
@@ -97,31 +105,31 @@ namespace Group01RestaurantSystem.CommandCLI
                             break;
                     }
 
-                    //Define box dimensions for displaying order details
+                    // Define box dimensions for displaying order details
                     int boxWidth = 30;
                     string horizontalLine = new string('=', boxWidth);
 
-                    //Print order details in a formatted box
+                    // Print order details in a formatted box
                     Console.WriteLine(horizontalLine);
                     PrintLine($"Order No: {number}", boxWidth);
                     PrintLine($"Status: {status}", boxWidth);
                     Console.WriteLine(new string('-', boxWidth));
 
-                    int counter2 = 1;
+                    int counter = 1;
                     foreach (var item in order.OrderItems)
                     {
-                        PrintLine($"{counter2++}. {item.Name}", boxWidth);
+                        PrintLine($"{counter++}. {item.Name}", boxWidth);
                     }
 
                     Console.WriteLine(horizontalLine);
                     Console.WriteLine();
                     Console.WriteLine();
 
-                    //Reset color to default
+                    // Reset color to default
                     Console.ForegroundColor = ConsoleColor.White;
                 }
 
-                //Display options for updating order status or exiting
+                // Display options for updating order status or exiting
                 Console.WriteLine("1. Update status");
                 Console.WriteLine("2. Exit");
                 Console.Write("Select an option: ");
@@ -139,26 +147,26 @@ namespace Group01RestaurantSystem.CommandCLI
                 }
                 choice = Convert.ToInt32(input);
 
-                //Switch case to handle the user's choice for updating order status or exiting
+                // Switch case to handle the user's choice for updating order status or exiting
                 switch (choice)
                 {
-                    //Case for updating the status of an order
+                    // Case for updating the status of an order
                     case 1:
-                        Console.WriteLine("Enter Order No: ");
-                        int OrderNo = Convert.ToInt32(Console.ReadLine());
-                        //Loop through the order queue to find and update the specified order
+                        Console.Write("Enter Order No: ");
+                        int orderNo = Convert.ToInt32(Console.ReadLine());
+                        // Loop through the order queue to find and update the specified order
                         foreach (var entry in orderQueue)
                         {
-                            if (entry.Number == OrderNo)
+                            if (entry.Number == orderNo)
                             {
                                 database.UpdateOrderStatus(entry.Order);
                                 ViewFoodQueue();
-                                break;
+                                return;
                             }
                         }
-                        //If the order does not exist, display an error message
+                        // If the order does not exist, display an error message
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Order Does not exist!");
+                        Console.WriteLine("Order does not exist!");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
@@ -166,11 +174,11 @@ namespace Group01RestaurantSystem.CommandCLI
                         ViewFoodQueue();
                         break;
 
-                    //Case for exiting the order status update menu
+                    // Case for exiting the order status update menu
                     case 2:
                         return;
 
-                    //Default case for handling invalid options
+                    // Default case for handling invalid options
                     default:
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -181,15 +189,19 @@ namespace Group01RestaurantSystem.CommandCLI
             }
         }
 
-        //Method to print a line of text within a specified width box
+        /// <summary>
+        /// Method to print a line of text within a specified width box.
+        /// </summary>
+        /// <param name="text">The text to print.</param>
+        /// <param name="width">The width of the box.</param>
         private static void PrintLine(string text, int width)
         {
-            //If the text exceeds the box width, truncate it and add ellipsis
+            // If the text exceeds the box width, truncate it and add ellipsis
             if (text.Length > width - 2)
             {
                 text = string.Concat(text.AsSpan(0, width - 5), "...");
             }
-            //Format the text within a box and print it
+            // Format the text within a box and print it
             string line = $"| {text.PadRight(width - 3)}|";
             Console.WriteLine(line);
         }

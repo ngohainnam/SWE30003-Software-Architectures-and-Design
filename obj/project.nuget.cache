@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "XWpFmT4NDwVZYcZyMoAFMH6qJOa9Tl0dosd52bQVwunknhVX0Ilco5WmnVQXcgeIT+G/roPw2pyVoHJSigYZDg==",
+  "dgSpecHash": "1r4YcswdWzQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Desktop\\y3\\sem1\\Software Architectures and Design\\assignment3_4\\Group01RestaurantSystem.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/Group01RestaurantSystem.csproj",
+  "expectedPackageFiles": [
+    "/Users/garrichfarrell/.nuget/packages/microsoft.netcore.app.ref/6.0.30/microsoft.netcore.app.ref.6.0.30.nupkg.sha512",
+    "/Users/garrichfarrell/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.30/microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
+    "/Users/garrichfarrell/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.30/microsoft.netcore.app.host.osx-arm64.6.0.30.nupkg.sha512"
+  ],
   "logs": []
 }

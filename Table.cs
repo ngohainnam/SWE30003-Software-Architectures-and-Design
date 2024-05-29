@@ -2,16 +2,34 @@
 
 namespace Group01RestaurantSystem
 {
-    // Class representing a table in the restaurant
+    /// <summary>
+    /// Represents a table in the restaurant.
+    /// </summary>
     public class Table
     {
-        // Properties for the table number, customer name, time slots, and user slots
-        public int TableNo { get; set; }               // Table number
-        public string CustomerName { get; set; }       // Name of the customer who reserved the table
-        public bool[][] TimeSlots { get; set; }        // 2D array to represent the availability of time slots
-        public string[][] UserSlots { get; set; }      // 2D array to represent the user who reserved each time slot
+        /// <summary>
+        /// Table number.
+        /// </summary>
+        public int TableNo { get; set; }
 
-        // Enum to represent days of the week
+        /// <summary>
+        /// Name of the customer who reserved the table.
+        /// </summary>
+        public string CustomerName { get; set; }
+
+        /// <summary>
+        /// 2D array to represent the availability of time slots.
+        /// </summary>
+        public bool[][] TimeSlots { get; set; }
+
+        /// <summary>
+        /// 2D array to represent the user who reserved each time slot.
+        /// </summary>
+        public string[][] UserSlots { get; set; }
+
+        /// <summary>
+        /// Days of the week.
+        /// </summary>
         public enum DayOfWeek
         {
             Sunday,
@@ -23,7 +41,9 @@ namespace Group01RestaurantSystem
             Saturday
         }
 
-        // Static class to hold constants related to time slots
+        /// <summary>
+        /// Constants related to time slots.
+        /// </summary>
         public static class TimeSlotConstants
         {
             public const int StartHour = 9;  // Start time (9 AM)
@@ -32,42 +52,50 @@ namespace Group01RestaurantSystem
             public const int DaysPerWeek = 7;  // Total days in a week
         }
 
-        // Default constructor to initialize the table with empty time slots
+        /// <summary>
+        /// Initializes a new instance of the Table class with empty time slots.
+        /// </summary>
         public Table()
         {
             TimeSlots = new bool[TimeSlotConstants.DaysPerWeek][];
             UserSlots = new string[TimeSlotConstants.DaysPerWeek][];
             CustomerName = "";
 
-            // Initialize each day with the appropriate number of hourly slots
             for (int day = 0; day < TimeSlotConstants.DaysPerWeek; day++)
             {
                 TimeSlots[day] = new bool[TimeSlotConstants.HoursPerDay];
                 UserSlots[day] = new string[TimeSlotConstants.HoursPerDay];
                 for (int hour = 0; hour < TimeSlotConstants.HoursPerDay; hour++)
                 {
-                    UserSlots[day][hour] = ""; // Initialize user slots to empty strings
+                    UserSlots[day][hour] = "";
                 }
             }
         }
 
-        // Constructor to initialize the table with a specific number
+        /// <summary>
+        /// Initializes a new instance of the Table class with a specified table number.
+        /// </summary>
+        /// <param name="number">Table number.</param>
         public Table(int number) : this()
         {
-            TableNo = number;   // Set the table number
-            CustomerName = "";  // Initialize the customer name to an empty string
+            TableNo = number;
+            CustomerName = "";
         }
 
-        // Static method to convert a string to a DayOfWeek enum value
+        /// <summary>
+        /// Converts a string to a DayOfWeek enum value.
+        /// </summary>
+        /// <param name="day">String representation of the day.</param>
+        /// <returns>DayOfWeek value.</returns>
         public static DayOfWeek GetDayOfWeek(string day)
         {
             if (Enum.TryParse(day, true, out DayOfWeek dayOfWeek))
             {
-                return dayOfWeek; // Return the parsed day of the week
+                return dayOfWeek;
             }
             else
             {
-                throw new ArgumentException("Invalid day of week"); // Throw an exception if parsing fails
+                throw new ArgumentException("Invalid day of week");
             }
         }
     }

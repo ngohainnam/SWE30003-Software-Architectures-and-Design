@@ -1,0 +1,15 @@
+[
+  {
+    "OrderItems": [
+      {
+        "Index": 10,
+        "Price": 22.22,
+        "Name": "carbonara spaghetti",
+        "Description": "creamy sauce, egg yolk, cheesy goodness",
+        "Category": "Entree"
+      }
+    ],
+    "Total": 22.22,
+    "CurrentDateTime": "2024-05-29T18:02:12.237082+10:00"
+  }
+]

@@ -192,7 +192,7 @@
         false
       ],
       [
-        false,
+        true,
         false,
         false,
         false,
@@ -264,7 +264,7 @@
         ""
       ],
       [
-        "",
+        "Hob",
         "",
         "",
         "",
@@ -1065,7 +1065,7 @@
         false,
         false,
         false,
-        false,
+        true,
         false,
         false
       ],
@@ -1137,7 +1137,7 @@
         "",
         "",
         "",
-        "",
+        "Men",
         "",
         ""
       ],
@@ -1211,7 +1211,7 @@
         false,
         false,
         false,
-        false,
+        true,
         false,
         false,
         false,
@@ -1283,7 +1283,7 @@
         "",
         "",
         "",
-        "",
+        "Job",
         "",
         "",
         "",
@@ -1337,11 +1337,31 @@
     "TimeSlots": [
       [
         false,
+        true,
         false,
         false,
         false,
         false,
         false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
         false,
         false
       ],
@@ -1370,17 +1390,7 @@
         false,
         false,
         false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
+        true,
         false,
         false,
         false
@@ -1390,17 +1400,7 @@
         false,
         false,
         false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
+        true,
         false,
         false,
         false
@@ -1409,11 +1409,31 @@
     "UserSlots": [
       [
         "",
+        "Jeff",
         "",
         "",
         "",
         "",
         "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Mom",
         "",
         ""
       ],
@@ -1442,17 +1462,7 @@
         "",
         "",
         "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      [
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Ube",
         "",
         "",
         ""
@@ -1462,17 +1472,7 @@
         "",
         "",
         "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      [
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Ume",
         "",
         "",
         ""

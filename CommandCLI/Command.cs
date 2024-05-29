@@ -1,32 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Group01RestaurantSystem.CommandCLI
 {
-    //Abstract base class for commands in the restaurant system
+    /// <summary>
+    /// Abstract base class for commands in the restaurant system.
+    /// </summary>
     public abstract class Command
     {
-        //Dictionary to store predefined passwords for different roles
-        //It is marked as readonly because it should not be modified at runtime
+        // Dictionary to store predefined passwords for different roles.
+        // It is marked as readonly because it should not be modified at runtime.
         private static readonly Dictionary<string, string> userPasswords = new Dictionary<string, string>
         {
             {"Manager", "managergo"}, {"FOHStaff", "staffgo"}, {"Chef", "chefgo"}
         };
 
-        public Command()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Command"/> class.
+        /// </summary>
+        protected Command()
         {
         }
 
-        //Abstract method to be implemented by derived classes to execute specific commands
+        /// <summary>
+        /// Abstract method to be implemented by derived classes to execute specific commands.
+        /// </summary>
         public abstract void Execute();
 
-        //Static method to start the command-line interface for the restaurant system
+        /// <summary>
+        /// Static method to start the command-line interface for the restaurant system.
+        /// </summary>
         public static void Start()
         {
-            //Infinite loop to continuously prompt the user until they choose to exit
+            // Infinite loop to continuously prompt the user until they choose to exit.
             while (true)
             {
                 Console.Clear();
@@ -35,7 +41,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 string? role = Console.ReadLine();
 
-                //Check if the input is null or empty and prompt the user to try again
+                // Check if the input is null or empty and prompt the user to try again.
                 if (string.IsNullOrEmpty(role))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -44,11 +50,11 @@ namespace Group01RestaurantSystem.CommandCLI
                     continue;
                 }
 
-                //Trim any extra whitespace from the input
+                // Trim any extra whitespace from the input.
                 role = role.Trim();
 
-                //Check if the user wants to exit the program
-                if (role.Equals("exit") || role.Equals("Exit") || role.Equals("e"))
+                // Check if the user wants to exit the program.
+                if (role.Equals("exit", StringComparison.OrdinalIgnoreCase) || role.Equals("e", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Exiting program...");
@@ -56,13 +62,13 @@ namespace Group01RestaurantSystem.CommandCLI
                     return;
                 }
 
-                //Check if the user selected the Guest role
-                if (role.Equals("guest") || role.Equals("Guest") || role.Equals("g"))
+                // Check if the user selected the Guest role.
+                if (role.Equals("guest", StringComparison.OrdinalIgnoreCase) || role.Equals("g", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.Clear();
                     CustomerInterface();
                 }
-                //Check if the selected role is valid and requires a password
+                // Check if the selected role is valid and requires a password.
                 else if (userPasswords.TryGetValue(role, out string? storedPassword))
                 {
                     Console.WriteLine("Enter your password:");
@@ -71,7 +77,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     if (password == storedPassword)
                     {
                         Console.Clear();
-                        //Switch case to navigate to the appropriate interface based on the role
+                        // Switch case to navigate to the appropriate interface based on the role.
                         switch (role)
                         {
                             case "Manager":
@@ -89,7 +95,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     }
                     else
                     {
-                        //Notify the user if the password is incorrect
+                        // Notify the user if the password is incorrect.
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Incorrect password, please try again.\n");
                         Console.ForegroundColor = ConsoleColor.White;
@@ -97,7 +103,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 }
                 else
                 {
-                    //Notify the user if an invalid role is selected
+                    // Notify the user if an invalid role is selected.
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid role selected, please try again.\n");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -110,25 +116,25 @@ namespace Group01RestaurantSystem.CommandCLI
 
         private static void CustomerInterface()
         {
-            Command orderCli = new orderCLI();
+            Command orderCli = new OrderCLI();
             orderCli.Execute();
         }
 
         private static void ManagerInterface()
         {
-            Command analyticsCLI = new analyticsCLI();
+            Command analyticsCLI = new AnalyticsCLI();
             analyticsCLI.Execute();
         }
 
         private static void FOHStaffInterface()
         {
-            Command reservationCLI = new reservationCLI();
+            Command reservationCLI = new ReservationCLI();
             reservationCLI.Execute();
         }
 
         private static void ChefInterface()
         {
-            Command kitchenCLI = new kitchenCLI();
+            Command kitchenCLI = new KitchenCLI();
             kitchenCLI.Execute();
         }
     }

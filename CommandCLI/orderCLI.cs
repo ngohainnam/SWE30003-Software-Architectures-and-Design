@@ -1,25 +1,29 @@
 ﻿using Group01RestaurantSystem.Transaction;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Principal;
 
 namespace Group01RestaurantSystem.CommandCLI
 {
-    internal class orderCLI : Command
+    /// <summary>
+    /// Class for handling order-related commands in the CLI.
+    /// </summary>
+    internal class OrderCLI : Command
     {
         private Menu fMenu;
         private Order fOrder;
 
-        public orderCLI()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrderCLI"/> class.
+        /// </summary>
+        public OrderCLI()
         {
             fMenu = new Menu();
             fOrder = new Order();
         }
 
-        //Override the Execute method to handle the order process
+        /// <summary>
+        /// Executes the order-related commands.
+        /// </summary>
         public override void Execute()
         {
             bool continueOrdering = true;
@@ -35,9 +39,9 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("2: Remove Item from Order");
                 Console.WriteLine("3: Complete Order");
                 Console.WriteLine("4: Exit");
-                Console.WriteLine("Enter your option: ");
+                Console.Write("Enter your option: ");
 
-                //Read and validate user input
+                // Read and validate user input
                 int choice;
                 while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
                 {
@@ -51,19 +55,19 @@ namespace Group01RestaurantSystem.CommandCLI
                     Console.WriteLine("2: Remove Item from Order");
                     Console.WriteLine("3: Complete Order");
                     Console.WriteLine("4: Exit");
-                    Console.WriteLine("Enter your option: ");
+                    Console.Write("Enter your option: ");
                 }
 
                 switch (choice)
                 {
                     case 1:
                         AddItemToOrder();
-                        fOrder.PrintOrder(); //Print the updated order
+                        fOrder.PrintOrder(); // Print the updated order
                         break;
 
                     case 2:
-                        RemoveItem(); 
-                        fOrder.PrintOrder(); //Print the updated order
+                        RemoveItem();
+                        fOrder.PrintOrder(); // Print the updated order
                         break;
 
                     case 3:
@@ -81,11 +85,11 @@ namespace Group01RestaurantSystem.CommandCLI
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Order Completed. Thank you!");
                         Console.ForegroundColor = ConsoleColor.White;
-                        continueOrdering = false; //Exit the loop
+                        continueOrdering = false; // Exit the loop
                         break;
 
                     case 4:
-                        continueOrdering = false; //Exit the loop
+                        continueOrdering = false; // Exit the loop
                         break;
 
                     default:
@@ -97,13 +101,16 @@ namespace Group01RestaurantSystem.CommandCLI
             }
         }
 
-        //Method to handle payment process
+        /// <summary>
+        /// Handles the payment process.
+        /// </summary>
+        /// <returns>True if the payment is successful, otherwise false.</returns>
         public bool MakePayment()
         {
             Console.WriteLine("\nSelect payment option:");
             Console.WriteLine("1: Card payment");
             Console.WriteLine("2: Cash payment");
-            String? input = Console.ReadLine();
+            string? input = Console.ReadLine();
             while (string.IsNullOrWhiteSpace(input))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -118,7 +125,7 @@ namespace Group01RestaurantSystem.CommandCLI
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("Enter your bank account number: ");
+                    Console.Write("Enter your bank account number: ");
                     string? account = Console.ReadLine();
                     while (string.IsNullOrWhiteSpace(account))
                     {
@@ -127,28 +134,23 @@ namespace Group01RestaurantSystem.CommandCLI
                         Console.ForegroundColor = ConsoleColor.White;
                         account = Console.ReadLine();
                     }
-                    Payment cardPayment = new CardTransaction(account, fOrder.GetTotal()); //Process card payment
-                    bool isValid1 = cardPayment.ProcessPayment();
-                    if (!isValid1)
-                    {
-                        return false;
-                    }
-                    return true;
+                    Payment cardPayment = new CardTransaction(account, fOrder.GetTotal()); // Process card payment
+                    return cardPayment.ProcessPayment();
 
                 case 2:
-                    Console.WriteLine("Enter the amount of cash you want to give: ");
+                    Console.Write("Enter the amount of cash you want to give: ");
                     int cash = Convert.ToInt32(Console.ReadLine());
-                    Payment cashPayment = new CashTransaction(cash, fOrder.GetTotal()); //Process cash payment
-                    bool isValid2 = cashPayment.ProcessPayment();
-                    if (!isValid2)
-                    {
-                        return false;
-                    }
-                    return true;
+                    Payment cashPayment = new CashTransaction(cash, fOrder.GetTotal()); // Process cash payment
+                    return cashPayment.ProcessPayment();
+
+                default:
+                    return false;
             }
-            return false;
         }
 
+        /// <summary>
+        /// Adds an item to the order.
+        /// </summary>
         private void AddItemToOrder()
         {
             int index;
@@ -161,7 +163,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
             while (!isValidInput)
             {
-                Console.WriteLine("Enter the index of the item to add:");
+                Console.Write("Enter the index of the item to add: ");
                 string input = Console.ReadLine() ?? "";
 
                 if (string.IsNullOrWhiteSpace(input))
@@ -181,7 +183,7 @@ namespace Group01RestaurantSystem.CommandCLI
                 {
                     try
                     {
-                        var item = fMenu.GetMenuItem(index - 1); //Adjust for zero-based index
+                        var item = fMenu.GetMenuItem(index - 1); // Adjust for zero-based index
                         fOrder.AddItem(item);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Added {item.Name} to your order.");
@@ -204,6 +206,9 @@ namespace Group01RestaurantSystem.CommandCLI
             }
         }
 
+        /// <summary>
+        /// Removes an item from the order.
+        /// </summary>
         private void RemoveItem()
         {
             int index;
@@ -216,7 +221,7 @@ namespace Group01RestaurantSystem.CommandCLI
 
             while (!isValidInput)
             {
-                Console.WriteLine("Enter the index of the item (in the order) to remove:");
+                Console.Write("Enter the index of the item (in the order) to remove: ");
                 string input = Console.ReadLine() ?? "";
                 Console.Clear();
                 fMenu.PrintMenu();
@@ -239,10 +244,10 @@ namespace Group01RestaurantSystem.CommandCLI
 
                 if (int.TryParse(input, out index))
                 {
-                    index -= 1; //Adjust for zero-based index
+                    index -= 1; // Adjust for zero-based index
                     try
                     {
-                        var item = fOrder.GetOrderItem(index); //Get the item to be removed
+                        var item = fOrder.GetOrderItem(index); // Get the item to be removed
                         fOrder.RemoveItem(item);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Removed {item.Name} from your order.");

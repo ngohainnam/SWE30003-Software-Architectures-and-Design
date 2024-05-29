@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 
 namespace Group01RestaurantSystem.CommandCLI
 {
-    internal class reservationCLI : Command
+    /// <summary>
+    /// Class for handling reservation-related commands in the CLI.
+    /// </summary>
+    internal class ReservationCLI : Command
     {
         private Reservation reservation; // Instance of Reservation class to manage reservations
 
-        // Constructor to initialize the Reservation object
-        public reservationCLI()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReservationCLI"/> class.
+        /// </summary>
+        public ReservationCLI()
         {
             reservation = new Reservation();
         }
 
-        // Override the Execute method to handle reservation-related actions
+        /// <summary>
+        /// Executes the reservation-related commands.
+        /// </summary>
         public override void Execute()
         {
             bool continueReservation = true;
@@ -28,9 +35,9 @@ namespace Group01RestaurantSystem.CommandCLI
                 Console.WriteLine("1: Make Reservation");
                 Console.WriteLine("2: Cancel Reservation");
                 Console.WriteLine("3: Exit");
-                Console.WriteLine("Enter your option: ");
+                Console.Write("Enter your option: ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                String? input = Console.ReadLine();
+                string? input = Console.ReadLine();
                 while (string.IsNullOrWhiteSpace(input))
                 {
                     Console.Clear();
@@ -42,7 +49,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     Console.WriteLine("1: Make Reservation");
                     Console.WriteLine("2: Cancel Reservation");
                     Console.WriteLine("3: Exit");
-                    Console.WriteLine("Enter your option: ");
+                    Console.Write("Enter your option: ");
                     input = Console.ReadLine();
                 }
                 int choice = Convert.ToInt32(input);
@@ -66,17 +73,21 @@ namespace Group01RestaurantSystem.CommandCLI
             }
         }
 
-        // Method to list all tables
+        /// <summary>
+        /// Lists all tables.
+        /// </summary>
         public void ListAllTables()
         {
             reservation.ListAllTables(); // Call the ListAllTables method from the Reservation class
         }
 
-        // Method to make a reservation
+        /// <summary>
+        /// Makes a reservation.
+        /// </summary>
         public void MakeReservation()
         {
             bool successfulBooking = false;
-            var attempts = 0;
+            int attempts = 0;
             string? customerName = "";
 
             while (!successfulBooking)
@@ -106,7 +117,6 @@ namespace Group01RestaurantSystem.CommandCLI
                 int tableNumber = Convert.ToInt32(input);
                 Console.ResetColor();
 
-
                 if (attempts == 1)
                 {
                     Console.WriteLine("Who is this reservation under?");
@@ -114,7 +124,7 @@ namespace Group01RestaurantSystem.CommandCLI
                     customerName = Console.ReadLine() ?? "";
                     Console.ResetColor();
 
-                    if (customerName == "")
+                    if (string.IsNullOrEmpty(customerName))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\n~~~~~This cannot be empty.~~~~~");
@@ -145,7 +155,9 @@ namespace Group01RestaurantSystem.CommandCLI
             }
         }
 
-        // Method to cancel a reservation
+        /// <summary>
+        /// Cancels a reservation.
+        /// </summary>
         public void CancelReservation()
         {
             Console.WriteLine("\nWho is the owner of the reservation that you would like to cancel?");
@@ -153,7 +165,7 @@ namespace Group01RestaurantSystem.CommandCLI
             string? customerName = Console.ReadLine() ?? "";
             Console.ResetColor();
 
-            if (customerName == "")
+            if (string.IsNullOrEmpty(customerName))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n~~~~~This cannot be empty.~~~~~");
