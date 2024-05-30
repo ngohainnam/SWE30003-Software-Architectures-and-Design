@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/Group01RestaurantSystem.csproj": {}
+    "C:\\Users\\ngoha\\OneDrive\\Desktop\\SWE30003-Software Architectures and Design\\asm3\\Group01RestaurantSystem.csproj": {}
   },
   "projects": {
-    "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/Group01RestaurantSystem.csproj": {
+    "C:\\Users\\ngoha\\OneDrive\\Desktop\\SWE30003-Software Architectures and Design\\asm3\\Group01RestaurantSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/Group01RestaurantSystem.csproj",
+        "projectUniqueName": "C:\\Users\\ngoha\\OneDrive\\Desktop\\SWE30003-Software Architectures and Design\\asm3\\Group01RestaurantSystem.csproj",
         "projectName": "Group01RestaurantSystem",
-        "projectPath": "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/Group01RestaurantSystem.csproj",
-        "packagesPath": "/Users/garrichfarrell/.nuget/packages/",
-        "outputPath": "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/obj/",
+        "projectPath": "C:\\Users\\ngoha\\OneDrive\\Desktop\\SWE30003-Software Architectures and Design\\asm3\\Group01RestaurantSystem.csproj",
+        "packagesPath": "C:\\Users\\ngoha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ngoha\\OneDrive\\Desktop\\SWE30003-Software Architectures and Design\\asm3\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/garrichfarrell/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ngoha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -56,15 +58,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.30, 6.0.30]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[6.0.30, 6.0.30]"
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.30, 6.0.30]"
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -72,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Group01RestaurantSystem
 {
@@ -72,6 +73,28 @@ namespace Group01RestaurantSystem
             Console.WriteLine($"Total: {Total:C}");
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        /// <summary>
+        /// Prints the receipt to the console.
+        /// </summary>
+        public void PrintReceipt()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Receipt:");
+            Console.WriteLine(new string('-', 30));
+            int i = 1;
+            foreach (var item in OrderItems)
+            {
+                Console.WriteLine($"{i}. {item.Name} - {item.Price:C}");
+                i++;
+            }
+            Console.WriteLine(new string('-', 30));
+            Console.WriteLine($"Total: {Total:C}");
+            Console.WriteLine(new string('-', 30));
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
 
         /// <summary>
         /// Gets the total price of the order.

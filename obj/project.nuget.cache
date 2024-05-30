@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "1r4YcswdWzQ=",
+  "dgSpecHash": "+FGe7jtQjzWNjmE/T7Ru7S3QVaFUMVg18yPeFOIGEEYaw/KLnXuNr8DnlgBYMXev6AMq0IdY33xC/iVWJyzniA==",
   "success": true,
-  "projectFilePath": "/Users/garrichfarrell/Documents/2024-Sem1/SWE30003-Software-Architectures-and-Design/Group01RestaurantSystem.csproj",
+  "projectFilePath": "C:\\Users\\ngoha\\OneDrive\\Desktop\\SWE30003-Software Architectures and Design\\asm3\\Group01RestaurantSystem.csproj",
   "expectedPackageFiles": [
-    "/Users/garrichfarrell/.nuget/packages/microsoft.netcore.app.ref/6.0.30/microsoft.netcore.app.ref.6.0.30.nupkg.sha512",
-    "/Users/garrichfarrell/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.30/microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
-    "/Users/garrichfarrell/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.30/microsoft.netcore.app.host.osx-arm64.6.0.30.nupkg.sha512"
+    "C:\\Users\\ngoha\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\ngoha\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\ngoha\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\ngoha\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.31\\microsoft.netcore.app.host.win-x64.6.0.31.nupkg.sha512"
   ],
   "logs": []
 }

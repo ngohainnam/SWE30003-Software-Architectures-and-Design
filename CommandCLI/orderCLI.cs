@@ -74,7 +74,7 @@ namespace Group01RestaurantSystem.CommandCLI
                         Console.Clear();
                         fMenu.PrintMenu();
                         Console.WriteLine();
-                        fOrder.PrintOrder();
+                        fOrder.PrintReceipt();
                         Console.WriteLine();
                         bool isValid = MakePayment();
                         if (!isValid)
